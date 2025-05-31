@@ -7,7 +7,7 @@ public class ShopButton : MonoBehaviour
 {
     public ButtonSystem Target;
     public int Cost;
-    public string Name;
+    
     public Color CanColor, CannotColor;
     public Coins Coins;
     public Image image;

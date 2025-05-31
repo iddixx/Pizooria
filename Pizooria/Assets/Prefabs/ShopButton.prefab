@@ -122,7 +122,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5073818360015479304}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6788394291011927065}
+        m_TargetAssemblyTypeName: ShopButton, Assembly-CSharp
+        m_MethodName: Buy
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6788394291011927065
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,10 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6b15264af829c41800c8c97011cdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Target: {fileID: 0}
   Cost: 0
-  Name: 
   CanColor: {r: 0, g: 1, b: 0, a: 1}
   CannotColor: {r: 1, g: 0, b: 0, a: 1}
+  Coins: {fileID: 0}
   image: {fileID: 5073818360015479304}
 --- !u!1 &5819549011258538820
 GameObject:
