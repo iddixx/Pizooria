@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Coins : MonoBehaviour
+public class FinanceSystem : MonoBehaviour
 {
     public ButtonSystem Target;
     public TextMeshProUGUI text;
-    static public int coins = 120;
+    static public int coins = 100;
     private void Start()
     {
         Target.OnItemBought += ChangeText;

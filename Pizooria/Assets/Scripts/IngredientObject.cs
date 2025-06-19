@@ -14,6 +14,8 @@ public class IngredientObject : ScriptableObject
     public Sprite SelfSprite;
     public uint MaxStack;
     public uint Identifier;
+    public int Cost;
+    public int AmmountPerCost;
     public CraftType Craft;
 }
 
