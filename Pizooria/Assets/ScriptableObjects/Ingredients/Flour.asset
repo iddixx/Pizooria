@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a8a197af652d745bdfbcb2464f5e51, type: 3}
   m_Name: Flour
   m_EditorClassIdentifier: 
-  SelfSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  MaxStack: 0
   Identifier: 1
-  Cost: 10
+  MaxStack: 999
+  Cost: 20
   AmmountPerCost: 5
+  SelfSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   Craft: 0
