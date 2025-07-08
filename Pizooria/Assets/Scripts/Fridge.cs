@@ -11,7 +11,21 @@ public class Fridge : MonoBehaviour
     public FridgeSlot slotTaking;
     public FridgeDrag drag;
     public static bool IsDragGoing = false;
-    public void SetDrag(FridgeSlot oldslot,Sprite sprite,int count,uint maxstack, string name)
+    public void SetRightDrag(FridgeSlot oldslot, Sprite sprite, int count, uint maxstack, string name)
+    {
+        drag.oldSlot = oldslot;
+
+        drag.image.sprite = sprite;
+
+        drag.nameText.text = name;
+        drag.countText.text = "1";
+        drag.count = count;
+
+        drag.maxStack = maxstack;
+        drag.IsLeftClick = false;
+        IsDragGoing = true;
+    }
+    public void SetLeftDrag(FridgeSlot oldslot,Sprite sprite,int count,uint maxstack, string name)
     {
         drag.oldSlot = oldslot;
 
@@ -22,6 +36,7 @@ public class Fridge : MonoBehaviour
         
         drag.count = count;
         drag.maxStack = maxstack;
+        drag.IsLeftClick = true ;
         IsDragGoing = true;
     }
     public bool IsASlotTaking()
@@ -32,6 +47,7 @@ public class Fridge : MonoBehaviour
             if (slots[i].IsTaking)
             {
                 slotTaking = slots[i];
+                
                 return true;
             }
         }

@@ -2464,8 +2464,11 @@ MonoBehaviour:
   fridge: {fileID: 0}
   oldSlot: {fileID: 0}
   defaultSprite: {fileID: 21300000, guid: 724d32f99b9b0594fa32c6b667f492f8, type: 3}
+  defaultName: 
+  defaultCount: 
   count: 0
   maxStack: 0
+  IsLeftClick: 0
 --- !u!114 &1445568209
 MonoBehaviour:
   m_ObjectHideFlags: 0
