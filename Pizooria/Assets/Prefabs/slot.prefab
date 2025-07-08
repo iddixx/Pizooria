@@ -222,6 +222,7 @@ GameObject:
   - component: {fileID: 4999841167615847020}
   - component: {fileID: 4510842352548482278}
   - component: {fileID: 7389244755313194040}
+  - component: {fileID: 6406821496763724525}
   m_Layer: 5
   m_Name: slot
   m_TagString: Untagged
@@ -304,8 +305,12 @@ MonoBehaviour:
   image: {fileID: 1224952424989016404}
   countText: {fileID: 4355514272365626355}
   nameText: {fileID: 4921570064859297891}
+  fridge: {fileID: 0}
+  deafaultSprite: {fileID: 21300000, guid: 724d32f99b9b0594fa32c6b667f492f8, type: 3}
   slotCount: 0
+  maxStack: 0
   isEmpty: 1
+  IsTaking: 0
 --- !u!114 &7389244755313194040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -325,7 +330,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 4510842352548482278}
           m_TargetAssemblyTypeName: FridgeSlot, Assembly-CSharp
-          m_MethodName: TakeItem
+          m_MethodName: OnEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -335,6 +340,35 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4510842352548482278}
+          m_TargetAssemblyTypeName: FridgeSlot, Assembly-CSharp
+          m_MethodName: OnExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &6406821496763724525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7894425922937992086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12939da2e7f07f44a9bbf32215072694, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slot: {fileID: 4510842352548482278}
 --- !u!1 &8166998141300340308
 GameObject:
   m_ObjectHideFlags: 0

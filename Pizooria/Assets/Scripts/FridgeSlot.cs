@@ -12,18 +12,50 @@ public class FridgeSlot : MonoBehaviour
 
     public Fridge fridge;
 
+    
+    public Sprite deafaultSprite;
+
     public int slotCount = 0;
     public uint maxStack = 0;
+    
     public bool isEmpty;
-
+    public bool IsTaking = false;
+    
     private void Start()
     {
         fridge = FindObjectOfType<Fridge>();
     }
-    public void TakeItem()
+    public void OnExit()
     {
-        fridge.SetDrag(this,image.sprite,slotCount,maxStack,nameText.text);
-    } 
+        if (Fridge.IsDragGoing && isEmpty) 
+        {
+            IsTaking = false;
+        } 
+    }
+    public void OnEnter()
+    {
+        if (Fridge.IsDragGoing && isEmpty)
+        {
+            IsTaking = true;
+        }
+    }
+    public void TakeAllItems()
+    {
+        if (!isEmpty && !Fridge.IsDragGoing) 
+        {
+            
+            fridge.SetDrag(this, image.sprite, slotCount, maxStack, nameText.text);
+            ResetVisuals();
+        } 
+    }
+    public void ResetVisuals()
+    {
+        image.sprite = deafaultSprite;
+        
+        countText.text = "";
+        nameText.text = "";
+       
+    }
     public bool AddItemtoSlot(IngredientObject item,int count)
     {
         bool couldplace = false;
@@ -35,6 +67,7 @@ public class FridgeSlot : MonoBehaviour
                 return false;
             }
             slotCount += count;
+            maxStack = item.MaxStack;
             image.sprite = item.SelfSprite;
             
             nameText.text = item.name;
