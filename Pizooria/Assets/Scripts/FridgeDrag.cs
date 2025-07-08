@@ -50,6 +50,7 @@ public class FridgeDrag : MonoBehaviour
                 GiveRightBack();
             }
             ResetDrag();
+            ResetTake();
         }
         if (Input.GetMouseButtonUp(1) && Fridge.IsDragGoing && !IsLeftClick)
         {
