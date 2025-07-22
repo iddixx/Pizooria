@@ -35,10 +35,7 @@ public class FridgeManager : MonoBehaviour
     {
         return BuyedIngredients;
     }
-    public void ClearList()
-    {
-        BuyedIngredients.Clear();
-    }
+   
     public void AddItemToManager(IngredientObject item)
     {
         BuyedIngredients.Add(item);

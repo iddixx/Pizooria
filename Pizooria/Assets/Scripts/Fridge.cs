@@ -19,7 +19,7 @@ public class Fridge : MonoBehaviour
         {
             AddItemToFridge(item);
         }
-        manager.ClearList();
+       
     }
     public void SetRightDrag(FridgeSlot oldslot, Sprite sprite, int count, uint maxstack, string name)
     {
