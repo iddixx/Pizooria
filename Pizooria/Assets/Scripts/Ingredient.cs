@@ -30,7 +30,7 @@ public class Ingredient : MonoBehaviour
     private uint _stack_count = 0;
     private SpriteRenderer _sprite_renderer;
 
-    private void Start()
+    virtual protected void Start()
     {
         _sprite_renderer = this.GetComponent<SpriteRenderer>();
         if(OptScriptableObject != null)
