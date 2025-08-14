@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class Pizza : Ingredient
 {
     public float BakingTime;
+    public bool IsBaked { public get; private set; }
     override protected void Start()
     {
         if(OptScriptableObject is PizzaObject pizza_so)
@@ -17,6 +18,11 @@ public class Pizza : Ingredient
         {
             throw new System.ArgumentException("Pizza expects PizzaObject, instead of IngredientObject");
         }
+    }
 
+    IEnumerator void StartBaking()
+    {
+        yield return new WaitForSeconds(BakingTime);
+        IsBaked = true;
     }
 }
