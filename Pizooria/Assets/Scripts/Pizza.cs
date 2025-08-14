@@ -6,7 +6,7 @@ using UnityEngine.Events;
 public class Pizza : Ingredient
 {
     public float BakingTime;
-    public bool IsBaked { public get; private set; }
+    public bool IsBaked { get; private set; }
     override protected void Start()
     {
         if(OptScriptableObject is PizzaObject pizza_so)
@@ -20,7 +20,7 @@ public class Pizza : Ingredient
         }
     }
 
-    IEnumerator void StartBaking()
+    public IEnumerator StartBaking()
     {
         yield return new WaitForSeconds(BakingTime);
         IsBaked = true;
