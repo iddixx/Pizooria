@@ -10,16 +10,7 @@ public enum PizzaType
     Hawaiian,
 }
 
-[CreateAssetMenu(fileName = "DialogData", menuName = "ScriptableObjects/DialogData", order = 1)]
-public class DialogData : ScriptableObject
-{
-    public string characterName;
-    
-    public string dialogText;
-    public PizzaType pizzaType;
-    public float failValue;
-    public float successValue;
-}
+
 
 [System.Serializable]
 public class DialogChance
@@ -36,7 +27,8 @@ public class DialogManager : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text dialogText;
     public GameObject dialogBar;
-    public float money = 100f;
+
+    public FinanceSystem financeSystem;
 
     private DialogData currentDialog;
     private DialogData lastDialog;
@@ -91,8 +83,9 @@ public class DialogManager : MonoBehaviour
 
     IEnumerator SkipRoutine()
     {
-        // Debug.Log("Skip: логіка ще не дописана");
-        money -= currentDialog.failValue;
+
+        FinanceSystem.coins -= currentDialog.failValue;
+        Debug.Log(FinanceSystem.coins);
 
         yield return new WaitForSeconds(1f);
         dialogBar.SetActive(false);
@@ -110,8 +103,9 @@ public class DialogManager : MonoBehaviour
 
     IEnumerator GiveUpRoutine()
     {
-        // Debug.Log("GiveUp: логіка ще не дописана");
-        money += currentDialog.successValue;
+
+        FinanceSystem.coins += currentDialog.successValue;
+        Debug.Log(FinanceSystem.coins);
 
         yield return new WaitForSeconds(1f);
         dialogBar.SetActive(false);

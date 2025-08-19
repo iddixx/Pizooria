@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 07be3e577acbeb244840482a344a4e62, type: 3}
   m_Name: DialogData
-  m_EditorClassIdentifier: Assembly-CSharp::DialogData
-  characterName: Viktor
-  dialogText: Hello
+  m_EditorClassIdentifier: 
+  characterName: 
+  dialogText: 
   pizzaType: 0
-  failValue: 5.4
-  successValue: 7.4
+  failValue: 0
+  successValue: 0
