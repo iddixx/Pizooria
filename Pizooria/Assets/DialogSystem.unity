@@ -463,10 +463,10 @@ RectTransform:
   - {fileID: 1997190517}
   m_Father: {fileID: 945654326}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 439, y: 249.16}
-  m_SizeDelta: {x: 811.0281, y: 498.3106}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -521, y: -290.83997}
+  m_SizeDelta: {x: 811.0281, y: 498.31055}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &945654321
 GameObject:
@@ -503,15 +503,11 @@ MonoBehaviour:
   dialogs:
   - dialogData: {fileID: 11400000, guid: 05a66a94b87ff0f43b0933d628fb4a5f, type: 2}
     chance: 0.839
-  - dialogData: {fileID: 11400000, guid: 044d234db7e55db4e867f28d02a21019, type: 2}
-    chance: 0.236
-  - dialogData: {fileID: 11400000, guid: a79357243d37efa49bb8d2d70ad529de, type: 2}
-    chance: 0.528
   numberOfPeople: 15
   nameText: {fileID: 1997190519}
   dialogText: {fileID: 1728504283}
   dialogBar: {fileID: 914151617}
-  money: 100
+  financeSystem: {fileID: 0}
 --- !u!114 &945654323
 MonoBehaviour:
   m_ObjectHideFlags: 0

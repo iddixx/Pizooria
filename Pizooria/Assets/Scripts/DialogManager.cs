@@ -3,12 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-public enum PizzaType
-{
-    Margherita,
-    Pepperoni,
-    Hawaiian,
-}
 
 
 
