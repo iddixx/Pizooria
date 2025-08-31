@@ -9,9 +9,9 @@ public class Pizza : Ingredient
     public bool IsBaked { get; private set; }
     override protected void Start()
     {
-        if(OptScriptableObject is PizzaObject pizza_so)
+        base.Start();
+        if(ScriptableObject is PizzaObject pizza_so)
         {
-            base.Start();
             BakingTime = pizza_so.BakingTime;
         }
         else

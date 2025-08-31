@@ -6,9 +6,9 @@ using UnityEngine.Events;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Ingredient : MonoBehaviour
 {
-    public IngredientObject OptScriptableObject;
+    public IngredientObject ScriptableObject;
     public uint MaxStack;
-    public uint Identifier;
+    // public uint Identifier;
     public UnityEvent<Ingredient> OnStackChange;
 
     public uint StackCount
@@ -33,12 +33,13 @@ public class Ingredient : MonoBehaviour
     virtual protected void Start()
     {
         _sprite_renderer = this.GetComponent<SpriteRenderer>();
-        if(OptScriptableObject != null)
+        if(ScriptableObject == null)
         {
-            this.Identifier = OptScriptableObject.Identifier;
-            this.MaxStack = OptScriptableObject.MaxStack;
-            this._sprite_renderer.sprite = OptScriptableObject.SelfSprite;
+            throw new System.ArgumentException("ScriptableObject is required for IngredientObject");
         }
+        // this.Identifier = ScriptableObject.Identifier;
+        this.MaxStack = ScriptableObject.MaxStack;
+        this._sprite_renderer.sprite = ScriptableObject.SelfSprite;
     }
 }
 
