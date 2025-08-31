@@ -25,9 +25,12 @@ public class FridgeSlot : MonoBehaviour
     public bool isEmpty;
     public bool IsTaking = false;
     
+    
     private void Start()
     {
         fridge = FindObjectOfType<Fridge>();
+
+        
     }
     public void OnExit()
     {

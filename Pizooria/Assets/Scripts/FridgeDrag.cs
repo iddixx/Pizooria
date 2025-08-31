@@ -26,7 +26,9 @@ public class FridgeDrag : MonoBehaviour
     public bool IsLeftClick;
     private void Start()
     {
+        
         fridge = FindObjectOfType<Fridge>();
+        
     }
     private void Update()
     {

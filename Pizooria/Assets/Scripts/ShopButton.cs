@@ -15,15 +15,16 @@ public class ShopButton : MonoBehaviour
     public TextMeshProUGUI costText,ammounttext;
     private void Start()
     {
-        Target.OnItemBought += SetColor;   
         
-        
-        ammounttext.text = $"{Ingredient.AmmountPerCost.ToString()}X";
-        costText.text = $"{Ingredient.Cost.ToString()}$";
+
+        Target.OnItemBought += SetColor;
+
+        ammounttext.text = $"{Ingredient.AmmountPerCost}X";
+        costText.text = $"{Ingredient.Cost}$";
 
         ingredient.sprite = Ingredient.SelfSprite;
-        ingredient.color = Color.red; 
         
+
         SetColor();
     }
     public void SetColor()
@@ -40,9 +41,18 @@ public class ShopButton : MonoBehaviour
         if (CouldBuy())
         {
             FinanceSystem.coins -= Ingredient.Cost;
+            if (Ingredient == null)
+            {
+                Debug.LogError("Ingredient ist null im ShopButton!");
+                return;
+            }
+
+            if (FridgeManager.Instance != null)
+            {
+                FridgeManager.Instance.AddItemToManager(Ingredient);
+            }
             
             Target.Buy();
-            
             Debug.Log(FinanceSystem.coins);
 
         }
