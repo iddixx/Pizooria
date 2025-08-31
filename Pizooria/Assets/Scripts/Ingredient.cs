@@ -27,8 +27,8 @@ public class Ingredient : MonoBehaviour
         }
         get => _stack_count;
     }
-    private uint _stack_count = 0;
-    private SpriteRenderer _sprite_renderer;
+    protected uint _stack_count = 0;
+    protected SpriteRenderer _sprite_renderer;
 
     virtual protected void Start()
     {

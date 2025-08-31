@@ -24,5 +24,7 @@ public class Pizza : Ingredient
     {
         yield return new WaitForSeconds(BakingTime);
         IsBaked = true;
+        PizzaObject so = ScriptableObject as PizzaObject;
+        _sprite_renderer.sprite = so.BakedSprite;
     }
 }
