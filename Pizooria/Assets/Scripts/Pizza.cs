@@ -32,5 +32,6 @@ public class Pizza : Ingredient
         IsBaked = true;
         PizzaObject so = ScriptableObject as PizzaObject;
         _sprite_renderer.sprite = so.BakedSprite;
+        BakedPizzasContainer.Instance.PushPizza(this);
     }
 }
