@@ -6,6 +6,7 @@ using UnityEngine;
 public class PizzaObject : IngredientObject 
 {
     public float BakingTime; // In seconds
+    public Sprite BakedSprite;
 }
 
 
