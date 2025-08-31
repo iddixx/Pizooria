@@ -11,7 +11,7 @@ public class Ingredient : MonoBehaviour
     // public uint Identifier;
     public UnityEvent<Ingredient> OnStackChange;
 
-    public uint StackCount
+    public virtual uint StackCount
     { 
         set
         {
