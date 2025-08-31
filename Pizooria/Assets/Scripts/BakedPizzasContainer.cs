@@ -17,6 +17,7 @@ public class BakedPizzasContainer : MonoBehaviour
         else 
         { 
             Instance = this; 
+            Pizzas = new List<Pizza>();
             DontDestroyOnLoad(Instance.gameObject);
         } 
     }
