@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,9 +10,9 @@ using UnityEngine.UI;
 
 public class FridgeSlot : MonoBehaviour
 {
-    public Image image;
+    public Image spriteRenderer;
     public TextMeshProUGUI countText, nameText;
-
+    public Ingredient Ingredient;
     public Fridge fridge;
 
     
@@ -19,8 +20,7 @@ public class FridgeSlot : MonoBehaviour
     public string defaultName;
     public string defaultCount;
     
-    public int slotCount = 0;
-    public uint maxStack = 0;
+    
     
     public bool isEmpty;
     public bool IsTaking = false;
@@ -31,6 +31,12 @@ public class FridgeSlot : MonoBehaviour
         fridge = FindObjectOfType<Fridge>();
 
         
+    }
+    
+    public Ingredient GetIngredient()
+    {
+        
+        return Ingredient;
     }
     public void OnExit()
     {
@@ -53,7 +59,7 @@ public class FridgeSlot : MonoBehaviour
         if (!isEmpty && !Fridge.IsDragGoing)
         {
 
-            fridge.SetRightDrag(this, image.sprite,1,maxStack, nameText.text);
+            fridge.SetRightDrag(this, 1,Ingredient.ScriptableObject);
             UpdateText();
         }
     }
@@ -62,72 +68,76 @@ public class FridgeSlot : MonoBehaviour
         if (!isEmpty && !Fridge.IsDragGoing) 
         {
             
-            fridge.SetLeftDrag(this, image.sprite, slotCount, maxStack, nameText.text);
+            fridge.SetLeftDrag(this, Ingredient.StackCount, Ingredient.ScriptableObject);
             ResetVisuals();
         } 
     }
     public void UpdateText()
     {
-        slotCount -= 1;
+        Ingredient.StackCount -= 1;
         
-        if (slotCount <= 0)
+        if (Ingredient.StackCount <= 0)
         {
             isEmpty = true;
             ResetVisuals() ;
         }
         else
         {
-            countText.text = slotCount.ToString();
+            countText.text = Ingredient.StackCount.ToString();
         }
         
     }
     public void ResetVisuals()
     {
-        image.sprite = defaultSprite;
+        spriteRenderer.sprite = defaultSprite;
 
         countText.text = defaultCount;
         nameText.text = defaultName;
        
     }
 
-    public bool AddtoSlot(Sprite SelfSprite,string name, int count,uint MaxStack)
+    public bool AddtoSlot(uint count,IngredientObject Object)
     {
         bool couldplace = false;
-        if (isEmpty || nameText.text == name)
+        if (isEmpty || nameText.text == Object.name)
         {
 
-            if (slotCount + count > MaxStack)
+            Ingredient.ScriptableObject = Object;
+            Ingredient.UpdateValues();
+            if (Ingredient.StackCount + count > Object.MaxStack)
             {
                 return false;
             }
-            slotCount += count;
-            maxStack = MaxStack;
-            image.sprite = SelfSprite;
+            Ingredient.StackCount += count;
+            Ingredient.MaxStack = Object.MaxStack;
+            spriteRenderer.sprite = Object.SelfSprite;
 
-            nameText.text = name;
-            countText.text = slotCount.ToString();
+            nameText.text = Object.name;
+            countText.text = Ingredient.StackCount.ToString();
             isEmpty = false;
             couldplace = true;
         }
 
         return couldplace;
     }
-    public bool AddItemtoSlot(IngredientObject item,int count)
+    public bool AddItemtoSlot(IngredientObject Object,int count)
     {
         bool couldplace = false;
-        if (isEmpty || nameText.text == item.name)
+        if (isEmpty || nameText.text == Object.name)
         {
-            
-            if (slotCount + count > item.MaxStack )
+            Ingredient.ScriptableObject = Object;
+            Ingredient.UpdateValues();
+            if (Ingredient.StackCount + count > Object.MaxStack )
             {
+                
                 return false;
             }
-            slotCount += count;
-            maxStack = item.MaxStack;
-            image.sprite = item.SelfSprite;
+            Ingredient.StackCount += (uint)count;
+            Ingredient.MaxStack = Object.MaxStack;
+            spriteRenderer.sprite = Object.SelfSprite;
             
-            nameText.text = item.name;
-            countText.text = slotCount.ToString();
+            nameText.text = Object.name;
+            countText.text = Ingredient.StackCount.ToString();
             isEmpty = false; 
             couldplace = true;
         }

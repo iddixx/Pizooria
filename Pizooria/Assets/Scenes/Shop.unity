@@ -493,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5117454252691907269, guid: 9000507402c91d84a92ef446a6e1df9e, type: 3}
       propertyPath: m_Name
-      value: ShopButton
+      value: PepperButton
       objectReference: {fileID: 0}
     - target: {fileID: 6788394291011927065, guid: 9000507402c91d84a92ef446a6e1df9e, type: 3}
       propertyPath: Target
@@ -502,7 +502,7 @@ PrefabInstance:
     - target: {fileID: 6788394291011927065, guid: 9000507402c91d84a92ef446a6e1df9e, type: 3}
       propertyPath: Ingredient
       value: 
-      objectReference: {fileID: 11400000, guid: 9bd8644fb3078474baa78c8f6ebdc8ee, type: 2}
+      objectReference: {fileID: 11400000, guid: d058d0f5ad36081428d450048b4a1523, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
