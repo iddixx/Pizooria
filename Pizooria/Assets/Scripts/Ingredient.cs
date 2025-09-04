@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-
-[RequireComponent(typeof(SpriteRenderer))]
+using UnityEngine.UI;
+[RequireComponent(typeof(Image))]
 public class Ingredient : MonoBehaviour
 {
     public IngredientObject ScriptableObject;
@@ -28,18 +29,28 @@ public class Ingredient : MonoBehaviour
         get => _stack_count;
     }
     protected uint _stack_count = 0;
-    protected SpriteRenderer _sprite_renderer;
+    protected Image _sprite_renderer;
 
+    public void UpdateValues()
+    {
+        _sprite_renderer = this.GetComponent<Image>();
+        if (ScriptableObject != null)
+        {
+            // this.Identifier = ScriptableObject.Identifier;
+            this.MaxStack = ScriptableObject.MaxStack;
+            this._sprite_renderer.sprite = ScriptableObject.SelfSprite;
+        }
+    }
     virtual protected void Start()
     {
-        _sprite_renderer = this.GetComponent<SpriteRenderer>();
-        if(ScriptableObject == null)
+        _sprite_renderer = this.GetComponent<Image>();
+        if(ScriptableObject != null)
         {
-            throw new System.ArgumentException("ScriptableObject is required for IngredientObject");
+            // this.Identifier = ScriptableObject.Identifier;
+            this.MaxStack = ScriptableObject.MaxStack;
+            this._sprite_renderer.sprite = ScriptableObject.SelfSprite;
         }
-        // this.Identifier = ScriptableObject.Identifier;
-        this.MaxStack = ScriptableObject.MaxStack;
-        this._sprite_renderer.sprite = ScriptableObject.SelfSprite;
+        
     }
 }
 

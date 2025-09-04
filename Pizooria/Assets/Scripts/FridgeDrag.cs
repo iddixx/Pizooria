@@ -20,9 +20,9 @@ public class FridgeDrag : MonoBehaviour
     public string defaultName;
     public string defaultCount;
     
-    public int count;
+    public uint count;
+    public IngredientObject Object;
     
-    public uint maxStack;
     public bool IsLeftClick;
     private void Start()
     {
@@ -38,7 +38,7 @@ public class FridgeDrag : MonoBehaviour
             Fridge.IsDragGoing = false;
             if (fridge.IsASlotTaking())
             {
-                if (fridge.slotTaking.AddtoSlot(image.sprite,nameText.text,count,maxStack))
+                if (fridge.slotTaking.AddtoSlot(count,Object))
                 {
                     ResetOldSlot();
                 }
@@ -59,7 +59,7 @@ public class FridgeDrag : MonoBehaviour
             Fridge.IsDragGoing = false;
             if (fridge.IsASlotTaking())
             {
-                if (!fridge.slotTaking.AddtoSlot(image.sprite, nameText.text, count, maxStack))
+                if (!fridge.slotTaking.AddtoSlot(count,Object))
                 {
                     GiveLeftBack();
                 }
@@ -75,7 +75,7 @@ public class FridgeDrag : MonoBehaviour
     }
     public void GiveRightBack()
     {
-        oldSlot.image.sprite = image.sprite;
+        oldSlot.spriteRenderer.sprite = image.sprite;
 
         oldSlot.nameText.text = nameText.text;
 
@@ -89,12 +89,12 @@ public class FridgeDrag : MonoBehaviour
     public void GiveLeftBack() 
     {
 
-        oldSlot.slotCount += 1;
-        oldSlot.countText.text = oldSlot.slotCount.ToString();
-        if (oldSlot.slotCount - 1 <= 0)
+        oldSlot.Ingredient.StackCount += 1;
+        oldSlot.countText.text = oldSlot.Ingredient.StackCount.ToString();
+        if (oldSlot.Ingredient.StackCount - 1 <= 0)
         {
             oldSlot.nameText.text = nameText.text;
-            oldSlot.image.sprite = image.sprite;
+            oldSlot.spriteRenderer.sprite = image.sprite;
 
 
             oldSlot.isEmpty = false;
@@ -104,13 +104,13 @@ public class FridgeDrag : MonoBehaviour
     
     public void ResetOldSlot()
     {
-        oldSlot.image.sprite = defaultSprite;
+        oldSlot.spriteRenderer.sprite = defaultSprite;
 
         oldSlot.nameText.text = defaultName;
         oldSlot.countText.text = defaultCount;
         
-        oldSlot.slotCount = 0;
-        oldSlot.maxStack = 0;
+        oldSlot.Ingredient.StackCount = 0;
+        oldSlot.Ingredient.StackCount = 0;
 
         
         oldSlot.isEmpty = true;
@@ -125,7 +125,7 @@ public class FridgeDrag : MonoBehaviour
         countText.text = "";
         
         count = 0;
-        maxStack = 0;
+        
         
     }
     public void ResetTake()

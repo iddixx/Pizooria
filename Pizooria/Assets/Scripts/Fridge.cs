@@ -21,31 +21,31 @@ public class Fridge : MonoBehaviour
         }
        
     }
-    public void SetRightDrag(FridgeSlot oldslot, Sprite sprite, int count, uint maxstack, string name)
+    public void SetRightDrag(FridgeSlot oldslot, uint count,IngredientObject Object)
     {
         drag.oldSlot = oldslot;
 
-        drag.image.sprite = sprite;
+        drag.image.sprite = Object.SelfSprite;
 
-        drag.nameText.text = name;
+        drag.nameText.text = Object.name;
         drag.countText.text = "1";
         drag.count = count;
 
-        drag.maxStack = maxstack;
+        drag.Object = Object;
         drag.IsLeftClick = false;
         IsDragGoing = true;
     }
-    public void SetLeftDrag(FridgeSlot oldslot,Sprite sprite,int count,uint maxstack, string name)
+    public void SetLeftDrag(FridgeSlot oldslot, uint count, IngredientObject Object)
     {
         drag.oldSlot = oldslot;
 
-        drag.image.sprite = sprite;
+        drag.image.sprite = Object.SelfSprite;
         
-        drag.nameText.text = name;
+        drag.nameText.text = Object.name;
         drag.countText.text = count.ToString();
         
         drag.count = count;
-        drag.maxStack = maxstack;
+        drag.Object = Object;
         drag.IsLeftClick = true ;
         IsDragGoing = true;
     }
@@ -67,7 +67,7 @@ public class Fridge : MonoBehaviour
     {
         for (int i = 0;i < slots.Count; i++)
         {
-            if (slots[i].AddItemtoSlot(Item,Item.AmmountPerCost)) 
+            if (slots[i].AddItemtoSlot(Item, Item.AmmountPerCost)) 
             {
                 break;
             }
