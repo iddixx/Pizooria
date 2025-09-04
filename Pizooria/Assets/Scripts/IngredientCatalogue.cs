@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEditor;
 
 [CreateAssetMenu(fileName = "IngredientCatalogue", menuName = "Pizooria/IngredientCatalogue")]
-public class IngredientCatalogue : ScriptableObject
+public class IngredientCatalogue : ScriptableSingleton<IngredientCatalogue>
 {
     public IngredientObject[] Ingredients;
 
