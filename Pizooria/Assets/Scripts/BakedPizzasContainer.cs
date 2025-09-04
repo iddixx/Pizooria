@@ -7,6 +7,17 @@ public class BakedPizzasContainer : MonoBehaviour
     public static BakedPizzasContainer Instance { get; private set; }
     public List<Pizza> Pizzas { get; private set; }
 
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    private static void OnBeforeSceneLoad()
+    {
+        if (FindObjectOfType<BakedPizzasContainer>() == null)
+        {
+            GameObject self = new GameObject("BakedPizzasContainer");
+            go.AddComponent<BakedPizzasContainer>();
+            DontDestroyOnLoad(self);
+        }
+    }
+
     private void Awake() 
     { 
         if (Instance != null && Instance != this) 
@@ -16,9 +27,8 @@ public class BakedPizzasContainer : MonoBehaviour
         } 
         else 
         { 
-            Instance = this; 
+            Instance = this;
             Pizzas = new List<Pizza>();
-            DontDestroyOnLoad(Instance.gameObject);
         } 
     }
 
