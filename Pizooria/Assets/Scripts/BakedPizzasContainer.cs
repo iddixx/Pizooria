@@ -13,7 +13,7 @@ public class BakedPizzasContainer : MonoBehaviour
         if (FindObjectOfType<BakedPizzasContainer>() == null)
         {
             GameObject self = new GameObject("BakedPizzasContainer");
-            go.AddComponent<BakedPizzasContainer>();
+            self.AddComponent<BakedPizzasContainer>();
             DontDestroyOnLoad(self);
         }
     }
