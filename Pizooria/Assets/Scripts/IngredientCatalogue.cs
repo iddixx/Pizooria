@@ -16,10 +16,15 @@ public class IngredientCatalogue : ScriptableSingleton<IngredientCatalogue>
 
         return Ingredients[(int)id];
     }
-    
+
     // returns -1 if there is no such object in catalogue
     public int GetIDByIngredientObject(IngredientObject obj)
     {
         return System.Array.IndexOf(Ingredients, obj);
     }
+
+    // returns null if not found
+#nullable enable
+    public IngredientObject? Find(System.Func<IngredientObject, bool> pred) => Ingredients.FirstOrDefault(pred);
+#nullable disable
 }
