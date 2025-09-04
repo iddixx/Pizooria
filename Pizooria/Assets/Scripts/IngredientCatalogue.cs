@@ -27,4 +27,7 @@ public class IngredientCatalogue : ScriptableSingleton<IngredientCatalogue>
 #nullable enable
     public IngredientObject? Find(System.Func<IngredientObject, bool> pred) => Ingredients.FirstOrDefault(pred);
 #nullable disable
+
+    // returns null if doesn't exist
+    public bool Exists(System.Func<IngredientObject, bool> pred) => Ingredients.Any(pred);
 }
