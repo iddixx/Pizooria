@@ -26,8 +26,8 @@
     } -> (Philipp);
 
     Система крафтів => {
-        ScriptableObject'и для крафтів;
-        Перевірка крафтів дивлячись на ScriptableObject'и;
+        ScriptableObject'и для крафтів; (DONE)
+        Перевірка крафтів дивлячись на ScriptableObject'и; (DONE)
     } -> (Ondar Murad);
 };
 
