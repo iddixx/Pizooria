@@ -13,7 +13,8 @@ public class BakedPizzasContainer : MonoBehaviour
         if (FindObjectOfType<BakedPizzasContainer>() == null)
         {
             GameObject self = new GameObject("BakedPizzasContainer");
-            self.AddComponent<BakedPizzasContainer>();
+            Instance = self.AddComponent<BakedPizzasContainer>();
+            Instance.Pizzas = new List<Pizza>();
             DontDestroyOnLoad(self);
         }
     }
@@ -28,7 +29,6 @@ public class BakedPizzasContainer : MonoBehaviour
         else 
         { 
             Instance = this;
-            Pizzas = new List<Pizza>();
         } 
     }
 
