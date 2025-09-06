@@ -20,6 +20,8 @@ static public class Crafter
     // returns null if there's no craft
     static public CraftUnit? Craft(CraftUnit[] craft)
     {
+        if((craft.Length == 0) || (craft == null)) return null;
+
         IngredientObject? craft_result = IngredientCatalogue.instance.Find(obj => CraftEquals(craft, obj.Craft));
         if(craft_result != null)
         {
