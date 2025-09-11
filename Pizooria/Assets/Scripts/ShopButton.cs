@@ -16,7 +16,7 @@ public class ShopButton : MonoBehaviour
     private void Start()
     {
         
-
+        
         Target.OnItemBought += SetColor;
 
         ammounttext.text = $"{Ingredient.AmmountPerCost}X";
