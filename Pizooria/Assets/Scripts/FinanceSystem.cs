@@ -8,7 +8,6 @@ public class FinanceSystem : MonoBehaviour
     public ButtonSystem Target;
     public TextMeshProUGUI text;
     static public int coins = 100;
-    
     private void Start()
     {
         Target.OnItemBought += ChangeText;
@@ -17,6 +16,5 @@ public class FinanceSystem : MonoBehaviour
     public void ChangeText()
     {
         text.text = $"Coins:{coins}";
-
     }
 }
