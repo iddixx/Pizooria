@@ -4,21 +4,22 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-[RequireComponent(typeof(Image))]
-public class Ingredient : MonoBehaviour
+
+public class Ingredient
 {
-    public IngredientObject ScriptableObject;
-    public uint MaxStack;
+    public readonly IngredientObject ScriptableObject;
+    public readonly uint MaxStack;
     // public uint Identifier;
     public UnityEvent<Ingredient> OnStackChange;
 
+    protected uint _stack_count = 0;
     public virtual uint StackCount
     { 
         set
         {
             if(value >= MaxStack)
             {
-                Debug.LogWarning($"{value} >= MaxStack", this);
+                Debug.LogWarning($"{value} >= MaxStack");
                 _stack_count = MaxStack;
                 OnStackChange?.Invoke(this);
                 return;
@@ -28,29 +29,16 @@ public class Ingredient : MonoBehaviour
         }
         get => _stack_count;
     }
-    protected uint _stack_count = 0;
-    protected Image _sprite_renderer;
 
-    public void UpdateValues()
+    public Ingredient(IngredientObject ScriptableObject)
     {
-        _sprite_renderer = this.GetComponent<Image>();
-        if (ScriptableObject != null)
+        if(ScriptableObject == null)
         {
-            // this.Identifier = ScriptableObject.Identifier;
-            this.MaxStack = ScriptableObject.MaxStack;
-            this._sprite_renderer.sprite = ScriptableObject.SelfSprite;
+            throw new System.ArgumentException("Ingredient should be initialized with ScriptableObject");
         }
-    }
-    virtual protected void Start()
-    {
-        _sprite_renderer = this.GetComponent<Image>();
-        if(ScriptableObject != null)
-        {
-            // this.Identifier = ScriptableObject.Identifier;
-            this.MaxStack = ScriptableObject.MaxStack;
-            this._sprite_renderer.sprite = ScriptableObject.SelfSprite;
-        }
-        
+
+        this.ScriptableObject = ScriptableObject;
+        this.MaxStack = ScriptableObject.MaxStack;
     }
 }
 
