@@ -32,6 +32,7 @@ public class UIDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             if(result.gameObject.transform == receiver)
             {
                 OnReceive?.Invoke(this);
+                break;
             }
         }
 
