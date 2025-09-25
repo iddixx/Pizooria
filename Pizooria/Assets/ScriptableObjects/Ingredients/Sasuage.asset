@@ -12,9 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a8a197af652d745bdfbcb2464f5e51, type: 3}
   m_Name: Sasuage
   m_EditorClassIdentifier: 
-  Identifier: 8
   MaxStack: 999
   Cost: 15
   AmmountPerCost: 5
-  SelfSprite: {fileID: 0}
-  Craft: 0
+  SelfSprite: {fileID: 21300000, guid: 0e067b5412bdb4e488155bf9c64eefb6, type: 3}

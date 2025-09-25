@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
-[RequireComponent(typeof(EventTrigger))]
+[RequireComponent(typeof(EventTrigger), typeof(RectTransform))]
 public class ButtonAnimation : MonoBehaviour
 {
-    
     public float NormalSize = 1f;
     public void OnPointerDown()
     {

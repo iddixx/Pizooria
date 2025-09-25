@@ -426,7 +426,8 @@ PrefabInstance:
       value: slot (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1475207087853019400, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
@@ -539,7 +540,8 @@ PrefabInstance:
       value: slot (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1475207087853019400, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
@@ -1082,7 +1084,8 @@ PrefabInstance:
       value: slot (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1475207087853019400, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
@@ -2490,7 +2493,8 @@ PrefabInstance:
       value: slot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 1475207087853019400, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
@@ -3379,7 +3383,7 @@ MonoBehaviour:
   defaultName: 
   defaultCount: 
   count: 0
-  maxStack: 0
+  Object: {fileID: 0}
   IsLeftClick: 0
 --- !u!222 &8346247946485638461
 CanvasRenderer:

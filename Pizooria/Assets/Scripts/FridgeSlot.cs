@@ -25,17 +25,13 @@ public class FridgeSlot : MonoBehaviour
     public bool isEmpty;
     public bool IsTaking = false;
     
-    
     private void Start()
     {
         fridge = FindObjectOfType<Fridge>();
-
-        
     }
     
     public Ingredient GetIngredient()
     {
-        
         return Ingredient;
     }
     public void OnExit()
@@ -98,18 +94,21 @@ public class FridgeSlot : MonoBehaviour
 
     public bool AddtoSlot(uint count,IngredientObject Object)
     {
-        bool couldplace = false;
-        if (isEmpty || nameText.text == Object.name)
+        if(Ingredient == null)
         {
-
-            Ingredient.ScriptableObject = Object;
-            Ingredient.UpdateValues();
+            Ingredient = new Ingredient(Object);
+        }
+        bool couldplace = false;
+        if (isEmpty || Ingredient.ScriptableObject == Object)
+        {
+            // Ingredient.ScriptableObject = Object;
+            // Ingredient.UpdateValues();
             if (Ingredient.StackCount + count > Object.MaxStack)
             {
                 return false;
             }
             Ingredient.StackCount += count;
-            Ingredient.MaxStack = Object.MaxStack;
+            // Ingredient.MaxStack = Object.MaxStack;
             spriteRenderer.sprite = Object.SelfSprite;
 
             nameText.text = Object.name;
@@ -125,15 +124,21 @@ public class FridgeSlot : MonoBehaviour
         bool couldplace = false;
         if (isEmpty || nameText.text == Object.name)
         {
-            Ingredient.ScriptableObject = Object;
-            Ingredient.UpdateValues();
+            // Ingredient.ScriptableObject = Object;
+            // Ingredient.UpdateValues();
+            if(Ingredient == null)
+            {
+                Ingredient = new Ingredient(Object);
+            }
+
             if (Ingredient.StackCount + count > Object.MaxStack )
             {
                 
                 return false;
             }
             Ingredient.StackCount += (uint)count;
-            Ingredient.MaxStack = Object.MaxStack;
+            // Ingredient.MaxStack = Object.MaxStack;
+            Debug.Log($"is null {spriteRenderer == null}");
             spriteRenderer.sprite = Object.SelfSprite;
             
             nameText.text = Object.name;
