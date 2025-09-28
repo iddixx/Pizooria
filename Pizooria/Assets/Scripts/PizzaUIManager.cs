@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 
 
-public class PizzaUIManager : MonoBehaviour
+/*public class PizzaUIManager : MonoBehaviour
 
 {
 
@@ -120,4 +120,4 @@ public class PizzaUIManager : MonoBehaviour
 
     }
 
-}
+}*/

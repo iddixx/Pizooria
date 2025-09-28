@@ -7,132 +7,86 @@ using UnityEngine.UI;
 
 public class FridgeDrag : MonoBehaviour
 {
-    
-    public RectTransform _rect;
-    
-    public TextMeshProUGUI nameText,countText;
-    public Image image;
 
-    public Fridge fridge;
-    public FridgeSlot oldSlot;
+    public static FridgeDrag Instance;
 
     public Sprite defaultSprite;
-    public string defaultName;
-    public string defaultCount;
-    
-    public uint count;
-    public IngredientObject Object;
-    
+    public Image image;
+    public TextMeshProUGUI nameText, countText;
+
+    private FridgeSlot originSlot;
+    private uint count;
+    private IngredientObject objectDragged;
+
     public bool IsLeftClick;
-    private void Start()
+
+    private void Awake() => Instance = this;
+
+    public void StartDrag(FridgeSlot slot, uint count, IngredientObject obj)
     {
-        
-        fridge = FindObjectOfType<Fridge>();
-        
+        originSlot = slot;
+        this.count = count;
+        objectDragged = obj;
+
+        image.sprite = obj.SelfSprite;
+        nameText.text = obj.name;
+        countText.text = count.ToString();
+
+        IsLeftClick = (count > 1); 
+        Fridge.IsDragGoing = true;
     }
+
     private void Update()
     {
-        _rect.position = Input.mousePosition;
-        if (Input.GetMouseButtonUp(0) && Fridge.IsDragGoing && IsLeftClick)
+        if (!Fridge.IsDragGoing) return;
+
+        transform.position = Input.mousePosition;
+
+        if (Input.GetMouseButtonUp(0))
         {
-            Fridge.IsDragGoing = false;
-            if (fridge.IsASlotTaking())
-            {
-                if (fridge.slotTaking.AddtoSlot(count,Object))
-                {
-                    ResetOldSlot();
-                }
-                else
-                {
-                    GiveRightBack();
-                }
-            }
-            else
-            {
-                GiveRightBack();
-            }
-            ResetDrag();
-            ResetTake();
+            EndDrag(linksklick: true);
         }
-        if (Input.GetMouseButtonUp(1) && Fridge.IsDragGoing && !IsLeftClick)
+        else if (Input.GetMouseButtonUp(1))
         {
-            Fridge.IsDragGoing = false;
-            if (fridge.IsASlotTaking())
-            {
-                if (!fridge.slotTaking.AddtoSlot(count,Object))
-                {
-                    GiveLeftBack();
-                }
-                
-            }
-            else
-            {
-                GiveLeftBack();
-            }
-            ResetDrag();
-            ResetTake();
+            EndDrag(linksklick: false);
         }
     }
-    public void GiveRightBack()
+
+    private void EndDrag(bool linksklick)
     {
-        oldSlot.spriteRenderer.sprite = image.sprite;
+        Fridge.IsDragGoing = false;
 
-        oldSlot.nameText.text = nameText.text;
-
-
-        oldSlot.countText.text = countText.text;
-
-
-        oldSlot.isEmpty = false;
-
-    }
-    public void GiveLeftBack() 
-    {
-
-        oldSlot.Ingredient.StackCount += 1;
-        oldSlot.countText.text = oldSlot.Ingredient.StackCount.ToString();
-        if (oldSlot.Ingredient.StackCount - 1 <= 0)
+        FridgeSlot targetSlot = FridgeManager.Instance.GetSlotUnderMouse();
+        if (targetSlot != null)
         {
-            oldSlot.nameText.text = nameText.text;
-            oldSlot.spriteRenderer.sprite = image.sprite;
+            uint toMove = linksklick ? count : 1;
 
+            
+            uint leftover = targetSlot.AddItems(objectDragged, toMove);
 
-            oldSlot.isEmpty = false;
+            
+            if (leftover > 0)
+            {
+                originSlot.AddItems(objectDragged, leftover);
+            }
+
+            
+            originSlot.UpdateUI();
+            targetSlot.UpdateUI();
         }
-        oldSlot.IsTaking = false;
-    }
-    
-    public void ResetOldSlot()
-    {
-        oldSlot.spriteRenderer.sprite = defaultSprite;
+        else
+        {
+            uint toReturn = linksklick ? count : 1;
+            originSlot.AddItems(objectDragged, toReturn);
+            originSlot.UpdateUI();
+        }
 
-        oldSlot.nameText.text = defaultName;
-        oldSlot.countText.text = defaultCount;
-        
-        oldSlot.Ingredient.StackCount = 0;
-        oldSlot.Ingredient.StackCount = 0;
-
-        
-        oldSlot.isEmpty = true;
+        ResetDrag();
     }
-    
-    
-    public void ResetDrag()
+    private void ResetDrag()
     {
         image.sprite = defaultSprite;
-
         nameText.text = "";
         countText.text = "";
-        
-        count = 0;
-        
-        
-    }
-    public void ResetTake()
-    {
-        foreach (FridgeSlot slot in fridge.slots) 
-        {
-            slot.IsTaking = false;
-        }
     }
 }

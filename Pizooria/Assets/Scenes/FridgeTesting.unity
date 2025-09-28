@@ -186,8 +186,6 @@ MonoBehaviour:
   - {fileID: 1816615898}
   - {fileID: 1837939015}
   - {fileID: 551066162}
-  slotTaking: {fileID: 0}
-  drag: {fileID: 8297287202383958699}
 --- !u!224 &214752709 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4020227908194767292, guid: 16d7900283b30e2499fe5d0be7694404, type: 3}
@@ -3373,17 +3371,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e84e609bb45ae8438cea5eb5429f266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rect: {fileID: 3294599668165326417}
+  defaultSprite: {fileID: 21300000, guid: 724d32f99b9b0594fa32c6b667f492f8, type: 3}
+  image: {fileID: 7869820030111230998}
   nameText: {fileID: 7024147027558316798}
   countText: {fileID: 5823569978524002101}
-  image: {fileID: 7869820030111230998}
-  fridge: {fileID: 0}
-  oldSlot: {fileID: 0}
-  defaultSprite: {fileID: 21300000, guid: 724d32f99b9b0594fa32c6b667f492f8, type: 3}
-  defaultName: 
-  defaultCount: 
-  count: 0
-  Object: {fileID: 0}
   IsLeftClick: 0
 --- !u!222 &8346247946485638461
 CanvasRenderer:

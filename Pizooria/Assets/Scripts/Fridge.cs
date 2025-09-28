@@ -3,75 +3,58 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+
+
 public class Fridge : MonoBehaviour
 {
-    public FridgeManager manager;
-    
+    public static bool IsDragGoing = false;
+
+    public FridgeManager manager; 
     public List<FridgeSlot> slots = new List<FridgeSlot>();
 
-    public FridgeSlot slotTaking;
-    public FridgeDrag drag;
-    public static bool IsDragGoing = false;
     private void Start()
     {
-        manager = FindObjectOfType<FridgeManager>();
-        foreach(IngredientObject item in manager.GetIngridients())
+        if (manager == null)
+            manager = FindObjectOfType<FridgeManager>();
+        
+        foreach (var slot in slots)
         {
-            AddItemToFridge(item);
+            slot.UpdateUI();
         }
-       
-    }
-    public void SetRightDrag(FridgeSlot oldslot, uint count,IngredientObject Object)
-    {
-        drag.oldSlot = oldslot;
 
-        drag.image.sprite = Object.SelfSprite;
-
-        drag.nameText.text = Object.name;
-        drag.countText.text = "1";
-        drag.count = count;
-
-        drag.Object = Object;
-        drag.IsLeftClick = false;
-        IsDragGoing = true;
-    }
-    public void SetLeftDrag(FridgeSlot oldslot, uint count, IngredientObject Object)
-    {
-        drag.oldSlot = oldslot;
-
-        drag.image.sprite = Object.SelfSprite;
         
-        drag.nameText.text = Object.name;
-        drag.countText.text = count.ToString();
-        
-        drag.count = count;
-        drag.Object = Object;
-        drag.IsLeftClick = true ;
-        IsDragGoing = true;
-    }
-    public bool IsASlotTaking()
-    {
-        bool isTaking = false;
-        for (int i = 0; i < slots.Count; i++)
+        foreach (var item in manager.BuyedIngredients)
         {
-            if (slots[i].IsTaking)
+            AddItemToFridge(item,(uint)item.AmmountPerCost);
+        }
+    }
+
+    public void AddItemToFridge(IngredientObject obj, uint amount = 1)
+    {
+        uint remaining = amount;
+        
+        foreach (var slot in slots)
+        {
+            if (slot.ingredient != null && slot.ingredient.ScriptableObject == obj)
             {
-                slotTaking = slots[i];
-                
-                return true;
+                remaining = slot.AddItems(obj, remaining);
+                if (remaining == 0) return; 
             }
         }
-        return isTaking;
-    }
-    public void AddItemToFridge(IngredientObject Item)
-    {
-        for (int i = 0;i < slots.Count; i++)
+
+        
+        foreach (var slot in slots)
         {
-            if (slots[i].AddItemtoSlot(Item, Item.AmmountPerCost)) 
+            if (slot.isEmpty)
             {
-                break;
+                remaining = slot.AddItems(obj, remaining);
+                if (remaining == 0) return; 
             }
         }
-    }
 
+        if (remaining > 0)
+        {
+            Debug.LogWarning($"Nicht genug Platz für {remaining} Stück von {obj.name}");
+        }
+    }
 }
