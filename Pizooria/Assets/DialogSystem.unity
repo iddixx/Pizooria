@@ -482,6 +482,7 @@ GameObject:
   - component: {fileID: 945654323}
   - component: {fileID: 945654322}
   - component: {fileID: 945654327}
+  - component: {fileID: 945654328}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -611,9 +612,20 @@ MonoBehaviour:
   pizzaPanel: {fileID: 1005587941}
   pizzaItemPrefab: {fileID: 6876704294334833254, guid: 640aecd6c3f48a14183351b522a86c5c, type: 3}
   dropZone: {fileID: 2101904079}
-  P: []
-  pizzaObject: {fileID: 1655684750}
+  testPizzaObject: {fileID: 0}
   spawnedPizzaItems: []
+--- !u!114 &945654328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945654321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0681204c8697b446be4a814ae74e02e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1005587940
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +637,7 @@ GameObject:
   - component: {fileID: 1005587941}
   - component: {fileID: 1005587943}
   - component: {fileID: 1005587942}
+  - component: {fileID: 1005587944}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -689,6 +702,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005587940}
   m_CullTransparentMesh: 1
+--- !u!114 &1005587944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1005587940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8695521f0d02e499659fee002a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 0
+  m_StartCorner: 0
+  m_StartAxis: 0
+  m_CellSize: {x: 100, y: 100}
+  m_Spacing: {x: 0, y: 0}
+  m_Constraint: 0
+  m_ConstraintCount: 2
 --- !u!1 &1102522214
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,12 +982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ccd613074f435052ac05d06c8513dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptableObject: {fileID: 11400000, guid: 018b7763715d6264680fd642edd37e28, type: 2}
-  MaxStack: 0
-  OnStackChange:
-    m_PersistentCalls:
-      m_Calls: []
-  BakingTime: 0
 --- !u!212 &1655684751
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1579,7 +1610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f808b625c99298a429910f77bbb6eb62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPizza: {fileID: 0}
+  data: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

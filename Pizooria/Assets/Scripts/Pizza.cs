@@ -10,8 +10,8 @@ public class Pizza : Ingredient
     {
         get
         {
+            Debug.Log(bakingEndTime);
             PizzaObject pizza_so = ScriptableObject as PizzaObject;
-            if(bakingEndTime < 0) return false;
             if(Time.time >= bakingEndTime) return true;
             return false;
         }

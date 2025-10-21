@@ -36,21 +36,19 @@ public class PizzaBaker : MonoBehaviour
         {
             throw new System.InvalidOperationException($"You can bake only {SimultaneouslyBakingLimit} pizzas at the same time");
         }
-        if(!pizza.IsBaked)
-        {
-            throw new System.ArgumentException($"You can't bake already baked pizza");
-        }
         _baking_pizzas.Add(pizza);
     }
 
     private void Update()
     {
-        foreach(Pizza pizza in _baking_pizzas)
+        for (int i = 0; i < _baking_pizzas.Count; i++)
         {
-            if(pizza.IsBaked)
+            Pizza pizza = _baking_pizzas[i];
+            Debug.Log(pizza.IsBaked);
+            if (pizza.IsBaked)
             {
                 BakedPizzasContainer.Instance.PushPizza(pizza);
-                _baking_pizzas.Remove(pizza);
+                _baking_pizzas.RemoveAt(i--);
             }
         }
     }

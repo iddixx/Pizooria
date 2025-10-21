@@ -9,7 +9,7 @@ public class BakedPizzasContainer : MonoBehaviour
     public List<Pizza> Pizzas { get; private set; }
 
     // you should handle pizza removal yourself
-    public UnityEvent OnPizzaPushed;
+    public UnityEvent OnPizzaPushed = new();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void OnBeforeSceneLoad()
