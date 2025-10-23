@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
-
-
-
 [System.Serializable]
 public class DialogChance
 {
@@ -21,10 +18,9 @@ public class DialogManager : MonoBehaviour
     public TMP_Text nameText;
     public TMP_Text dialogText;
     public GameObject dialogBar;
-
     public FinanceSystem financeSystem;
 
-    private DialogData currentDialog;
+    public DialogData currentDialog;
     private DialogData lastDialog;
 
     void Start()
@@ -77,16 +73,11 @@ public class DialogManager : MonoBehaviour
 
     IEnumerator SkipRoutine()
     {
-
         FinanceSystem.coins -= currentDialog.failValue;
-        Debug.Log(FinanceSystem.coins);
-
         yield return new WaitForSeconds(1f);
         dialogBar.SetActive(false);
-
         yield return new WaitForSeconds(1f);
         dialogBar.SetActive(true);
-
         ShowNextDialog();
     }
 
@@ -97,16 +88,11 @@ public class DialogManager : MonoBehaviour
 
     IEnumerator GiveUpRoutine()
     {
-
         FinanceSystem.coins += currentDialog.successValue;
-        Debug.Log(FinanceSystem.coins);
-
         yield return new WaitForSeconds(1f);
         dialogBar.SetActive(false);
-
         yield return new WaitForSeconds(1f);
         dialogBar.SetActive(true);
-
         ShowNextDialog();
     }
 

@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BakedPizzasContainer : MonoBehaviour
 {
     public static BakedPizzasContainer Instance { get; private set; }
     public List<Pizza> Pizzas { get; private set; }
+
+    // you should handle pizza removal yourself
+    public UnityEvent OnPizzaPushed = new();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void OnBeforeSceneLoad()
@@ -40,5 +44,6 @@ public class BakedPizzasContainer : MonoBehaviour
             throw new System.ArgumentException("You cannot push raw pizza");
         }
         Pizzas.Add(pizza);
+        OnPizzaPushed?.Invoke();
     }
 }

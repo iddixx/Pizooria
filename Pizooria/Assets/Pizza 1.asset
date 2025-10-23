@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75136db0376d0e66a9f8d953a2c16140, type: 3}
   m_Name: Pizza 1
   m_EditorClassIdentifier: 
-  Identifier: 0
   MaxStack: 999
   Cost: 0
   AmmountPerCost: 0
   SelfSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
   Craft: 0
   BakingTime: 5
+  BakedSprite: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
