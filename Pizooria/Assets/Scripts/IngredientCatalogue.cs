@@ -8,6 +8,19 @@ using UnityEngine;
 public class IngredientCatalogue : ScriptableObject
 {
     public IngredientObject[] Ingredients;
+    private static IngredientCatalogue _instance;
+
+    public static IngredientCatalogue instance
+    {
+        get
+        {
+            if(_instance == null)
+            {
+                _instance = Resources.Load<IngredientCatalogue>("IngredientCatalogue");
+            }
+            return _instance;
+        }
+    }
 
     public IngredientObject GetByID(uint id)
     {
