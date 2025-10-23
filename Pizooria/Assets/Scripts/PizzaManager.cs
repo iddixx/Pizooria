@@ -7,9 +7,6 @@ public class PizzaManager : MonoBehaviour
 {
     public static PizzaManager Instance { get; private set; }
     
-    public IngredientCatalogue ingredientCatalogue;
-    
-    
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -28,9 +25,9 @@ public class PizzaManager : MonoBehaviour
         // IngredientObject[] allPizzaObjects = System.Array.FindAll<IngredientObject>(IngredientCatalogue.instance.Ingredients, Obj => Obj is PizzaObject);
         List<PizzaObject> allPizzaObjects = new List<PizzaObject>();
 
-        Debug.Log(ingredientCatalogue);
-        Debug.Log(ingredientCatalogue.Ingredients);
-        foreach(IngredientObject obj in ingredientCatalogue.Ingredients)
+        Debug.Log(IngredientCatalogue.instance);
+        Debug.Log(IngredientCatalogue.instance.Ingredients);
+        foreach(IngredientObject obj in IngredientCatalogue.instance.Ingredients)
         {
 
             if(obj is PizzaObject)
