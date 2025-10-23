@@ -27,7 +27,7 @@ public class BakedPizzasContainer : MonoBehaviour
     { 
         if (Instance != null && Instance != this) 
         { 
-            Debug.Log("Destroyed second instance of BakedPizzasContainer, because it's singleton", this);
+            Debug.LogWarning("Destroyed second instance of BakedPizzasContainer, because it's singleton", this);
             Destroy(this); 
         } 
         else 
