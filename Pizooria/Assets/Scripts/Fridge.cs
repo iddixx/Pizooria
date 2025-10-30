@@ -25,7 +25,7 @@ public class Fridge : MonoBehaviour
         
         foreach (var item in manager.BuyedIngredients)
         {
-            AddItemToFridge(item,(uint)item.AmmountPerCost);
+            AddItemToFridge(item.Ingredient, item.Count);
         }
     }
 

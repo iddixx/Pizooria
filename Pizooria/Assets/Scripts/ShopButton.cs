@@ -33,6 +33,7 @@ public class ShopButton : MonoBehaviour
     }
     public bool CouldBuy() 
     {
+        Debug.Log($"Ingredient == null: {Ingredient == null}");
         return FinanceSystem.coins >= Ingredient.Cost;
     }
     

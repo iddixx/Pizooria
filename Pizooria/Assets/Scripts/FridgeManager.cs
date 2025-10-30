@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using System.Linq;
 using UnityEngine;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -11,8 +12,9 @@ using UnityEngine.EventSystems;
 public class FridgeManager : MonoBehaviour
 {
     public List<FridgeSlot> slots = new List<FridgeSlot>();
-    public List<IngredientObject> BuyedIngredients = new List< IngredientObject>();
-    
+    public List<CraftUnit> BuyedIngredients = new List<CraftUnit>();
+    // make it use CraftUnit instead of IngredientObject, to have the count of Ingerdients
+    //
     public Fridge fridge;
     
     public FridgeSlot slotTaking;
@@ -100,12 +102,82 @@ public class FridgeManager : MonoBehaviour
         }
 
         Instance = this;
-        
+        // StartCoroutine(PrintIngredientsEvery(5)); // for testing purposes
     }
     
     
     public void AddItemToManager(IngredientObject item)
     {
-        BuyedIngredients.Add(item);
+        bool found = false;
+        for(int i = 0; i < BuyedIngredients.Count; ++i)
+        {
+            if(BuyedIngredients[i].Ingredient == item)
+            {
+                found = true;
+                CraftUnit found_unit = BuyedIngredients[i];
+                ++found_unit.Count;
+                BuyedIngredients.RemoveAt(i);
+                BuyedIngredients.Add(found_unit);
+            }
+        }
+
+        if(!found)
+        {
+            BuyedIngredients.Add(new CraftUnit(item, (uint)item.AmmountPerCost));
+        }
     }
+
+    public void DecreaseCountFromManager(IngredientObject item)
+    {
+        bool found = false;
+        for(int i = 0; i < BuyedIngredients.Count; ++i)
+        {
+            if(BuyedIngredients[i].Ingredient == item)
+            {
+                found = true;
+                CraftUnit found_unit = BuyedIngredients[i];
+                if((found_unit.Count - 1) == 0)
+                {
+                    BuyedIngredients.RemoveAt(i);
+                }
+                else
+                {
+                    BuyedIngredients.RemoveAt(i);
+                    BuyedIngredients.Add(found_unit);
+                }
+            }
+        }
+
+        if(!found)
+        {
+            throw new System.ArgumentException("You cannot decrease count of item that is not in fridge!");
+        }
+    }
+
+    // public void PrintIngredients()
+    // {
+    //     if(!BuyedIngredients.Any())
+    //     {
+    //         Debug.Log("[]");
+    //         return;
+    //     }
+    //
+    //     string result = "[";
+    //     result += $"{BuyedIngredients[0].Ingredient.name}";
+    //     for(int i = 1; i < BuyedIngredients.Count; ++i)
+    //     {
+    //         result += $" ,{BuyedIngredients[i]Ingredient.name}";
+    //     }
+    //     result += $"]";
+    //     Debug.Log(result);
+    // }
+
+    // public IEnumerator PrintIngredientsEvery(float seconds)
+    // {
+    //     while(true)
+    //     {
+    //         PrintIngredients();
+    //         yield return new WaitForSeconds(seconds);
+    //     }
+    // }
 }
