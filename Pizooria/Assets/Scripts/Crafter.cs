@@ -31,4 +31,20 @@ static public class Crafter
         return null;
     }
 #nullable disable
+    // checks in FridgeManager, does player have nececcary ingredients to craft obj 
+    static public bool CanCraft(IngredientObject obj)
+    {
+        if((obj.Craft.Length == 0) || (obj.Craft == null)) return false;
+
+        foreach(CraftUnit inv_unit in FridgeManager.instance.BuyedIngredients)
+        {
+            foreach(CraftUnit craft_unit in obj.Craft)
+            {
+                if(inv_unit.Ingredient == craft_unit.Ingredient)
+            //      and
+                if(inv_unit.Count < craft_unit.Count) return false;
+            }
+        }
+        return true;
+    }
 }
