@@ -85,7 +85,6 @@ public class FridgeManager : MonoBehaviour
             }
             else
             {
-
                 return false;
             }
         }
@@ -126,7 +125,7 @@ public class FridgeManager : MonoBehaviour
         }
     }
 
-    public void DecreaseCountFromManager(IngredientObject item)
+    public void DecreaseCountFromManager(IngredientObject item, uint amount)
     {
         bool found = false;
         for(int i = 0; i < BuyedIngredients.Count; ++i)
@@ -135,12 +134,18 @@ public class FridgeManager : MonoBehaviour
             {
                 found = true;
                 CraftUnit found_unit = BuyedIngredients[i];
-                if((found_unit.Count - 1) == 0)
+                uint rest = (found_unit.Count - amount);
+                if(rest < 0)
+                {
+                    throw new System.ArgumentException("You cannot decrease more than fridge has!");
+                }
+                if(rest == 0)
                 {
                     BuyedIngredients.RemoveAt(i);
                 }
-                else
+                else // rest > 0
                 {
+                    found_unit.Count = rest;
                     BuyedIngredients.RemoveAt(i);
                     BuyedIngredients.Add(found_unit);
                 }
