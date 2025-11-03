@@ -36,7 +36,7 @@ static public class Crafter
     {
         if((obj.Craft.Length == 0) || (obj.Craft == null)) return false;
 
-        foreach(CraftUnit inv_unit in FridgeManager.instance.BuyedIngredients)
+        foreach(CraftUnit inv_unit in FridgeManager.Instance.BuyedIngredients)
         {
             foreach(CraftUnit craft_unit in obj.Craft)
             {
@@ -46,5 +46,29 @@ static public class Crafter
             }
         }
         return true;
+    }
+    
+    static public bool TryFridgeCraft(IngredientObject obj)
+    {
+        if(!CanCraft(obj)) return false;
+
+        Crafter.UnsafeFridgeCraft(obj);
+        return true;
+    }
+
+    // USE TryFridgeCraft INSTEAD, UNLESS YOU REALLY KNOW WHAT ARE YOU DOING 
+    static public void UnsafeFridgeCraft(IngredientObject obj)
+    {
+        foreach(CraftUnit inv_unit in FridgeManager.Instance.BuyedIngredients)
+        {
+            foreach(CraftUnit craft_unit in obj.Craft)
+            {
+                if(inv_unit.Ingredient == craft_unit.Ingredient)
+                {
+                    FridgeManager.Instance.DecreaseCountFromManager(inv_unit.Ingredient, craft_unit.Count);
+                }
+            }
+        }
+        FridgeManager.Instance.AddItemToManager(obj);
     }
 }
