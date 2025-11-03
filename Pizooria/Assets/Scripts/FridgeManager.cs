@@ -7,12 +7,15 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 using Unity.VisualScripting;
+using UnityEngine.Events;
 using System.ComponentModel;
 using UnityEngine.EventSystems;
 public class FridgeManager : MonoBehaviour
 {
     public List<FridgeSlot> slots = new List<FridgeSlot>();
     public List<CraftUnit> BuyedIngredients = new List<CraftUnit>();
+    public UnityEvent BoughtIngredient = new();
+    public UnityEvent DecreasedIngredient = new();
     // make it use CraftUnit instead of IngredientObject, to have the count of Ingerdients
     //
     public Fridge fridge;
@@ -35,7 +38,6 @@ public class FridgeManager : MonoBehaviour
 
     public FridgeSlot GetSlotUnderMouse()
     {
-        
         PointerEventData pointerData = new PointerEventData(EventSystem.current)
         {
             position = Input.mousePosition
@@ -64,7 +66,6 @@ public class FridgeManager : MonoBehaviour
     }
     public bool AddItemToSlot(int slotIndex, IngredientObject itemObject, uint amount)
     {
-        
         bool couldAdd = false;
         if (slotIndex < 0 || slotIndex >= slots.Count)
         {
@@ -116,12 +117,14 @@ public class FridgeManager : MonoBehaviour
                 found_unit.Count += (uint)item.AmmountPerCost;
                 BuyedIngredients.RemoveAt(i);
                 BuyedIngredients.Add(found_unit);
+                BoughtIngredient?.Invoke();
             }
         }
 
         if(!found)
         {
             BuyedIngredients.Add(new CraftUnit(item, (uint)item.AmmountPerCost));
+            BoughtIngredient?.Invoke();
         }
     }
 
@@ -149,6 +152,7 @@ public class FridgeManager : MonoBehaviour
                     BuyedIngredients.RemoveAt(i);
                     BuyedIngredients.Add(found_unit);
                 }
+                DecreasedIngredient?.Invoke();
             }
         }
 
