@@ -81,7 +81,6 @@ public class FridgeManager : MonoBehaviour
         {
             if (slot.ingredient.ScriptableObject == itemObject)
             {
-
                 slot.ingredient.StackCount += amount;
             }
             else
@@ -115,7 +114,7 @@ public class FridgeManager : MonoBehaviour
             {
                 found = true;
                 CraftUnit found_unit = BuyedIngredients[i];
-                ++found_unit.Count;
+                found_unit.Count += (uint)item.AmmountPerCost;
                 BuyedIngredients.RemoveAt(i);
                 BuyedIngredients.Add(found_unit);
             }
