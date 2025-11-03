@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a8a197af652d745bdfbcb2464f5e51, type: 3}
   m_Name: SampleIngredient
   m_EditorClassIdentifier: 
-  Identifier: 1337228
   MaxStack: 214
   Cost: 10
   AmmountPerCost: 1
   SelfSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  Craft: 0
+  Craft:
+  - Ingredient: {fileID: 11400000, guid: fb1cadd22c7f92446aa009a76be2dcea, type: 2}
+    Count: 1
+  - Ingredient: {fileID: 11400000, guid: ec95a3a114981cf45bea169d306c047c, type: 2}
+    Count: 2
