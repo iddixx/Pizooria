@@ -8,7 +8,7 @@ using UnityEngine;
 public class UIDraggable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public Transform receiver;
-    public UnityEvent<UIDraggable> OnReceive;
+    public UnityEvent<UIDraggable> OnReceive = new();
 
     public bool IsBeingDragged { get; private set; }
 

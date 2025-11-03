@@ -10,7 +10,7 @@ public class Ingredient
     public readonly IngredientObject ScriptableObject;
     public readonly uint MaxStack;
     // public uint Identifier;
-    public UnityEvent<Ingredient> OnStackChange;
+    public UnityEvent<Ingredient> OnStackChange = new();
 
     protected uint _stack_count = 0;
     public virtual uint StackCount
