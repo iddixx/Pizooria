@@ -10,7 +10,9 @@ using UnityEngine;
 public class UICraftContainer : MonoBehaviour
 {
     public UICraftView CraftPrefab;
-    private List<UICraftView> _contents;
+    private List<UICraftView> _contents = new List<UICraftView>();
+
+    public void Start() => UpdateContents();
 
     private void OnEnable()
     {
@@ -28,7 +30,12 @@ public class UICraftContainer : MonoBehaviour
     {
         while(_contents.Count != 0)
         {
-            Destroy(_contents[0].gameObject);
+            GameObject it = _contents[0].gameObject;
+            Destroy(_contents[0]);
+            foreach(Transform child in it.transform)
+            {
+                Destroy(child.gameObject);
+            }
             _contents.RemoveAt(0);
         }
     }
