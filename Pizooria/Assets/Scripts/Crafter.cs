@@ -35,6 +35,8 @@ static public class Crafter
     static public bool CanCraft(IngredientObject obj)
     {
         if((obj.Craft.Length == 0) || (obj.Craft == null)) return false;
+        if(FridgeManager.Instance.BuyedIngredients == null) return false;
+        if(FridgeManager.Instance.BuyedIngredients.Count == 0) return false;
 
         foreach(CraftUnit inv_unit in FridgeManager.Instance.BuyedIngredients)
         {
