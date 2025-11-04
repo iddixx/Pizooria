@@ -21,7 +21,9 @@ public class UICraftView : MonoBehaviour
         SetCraft(From);
     }
 
-    private void CraftAction() => Crafter.UnsafeFridgeCraft(From);
+    // DO NOT CALL THIS METHOD
+    public void CraftAction() => Crafter.UnsafeFridgeCraft(From);
+
     private void OnEnable()
     {
         _self_button.onClick.AddListener(CraftAction);
@@ -50,15 +52,18 @@ public class UICraftView : MonoBehaviour
         {
             UICraftUnitView unit_view = Instantiate(UnitPrefab, this.transform);
             unit_view.SetUnit(curr_unit);
+            _items.Add(unit_view.gameObject);
         }
 
         Image separator = Instantiate(SeparatorPrefab, this.transform);
         _self_button.targetGraphic = separator;
+        _items.Add(separator.gameObject);
 
         CraftUnit craft_result = new CraftUnit(craft, (uint)craft.AmmountPerCost);
 
         UICraftUnitView result_view = Instantiate(UnitPrefab, this.transform);
         result_view.SetUnit(craft_result);
+        _items.Add(result_view.gameObject);
 
         From = craft;
         _self_button.onClick.AddListener(CraftAction);
