@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Pizza : Ingredient
+public class Pizza : Ingredient, IDragObjectData
 {
     public new PizzaObject ScriptableObject => (PizzaObject)base.ScriptableObject;
     public float bakingEndTime = -1f;

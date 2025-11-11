@@ -15,6 +15,12 @@ public class PizzaUIManager : MonoBehaviour
 
     void Start()
     {
+        DragSystem.Instance.OnDragEnded += ended =>
+        {
+            DraggingPizza = null;
+            UpdateSpawnedPizzaItems();
+        };
+        
         BakedPizzasContainer.Instance.OnPizzaPushed.AddListener(UpdateSpawnedPizzaItems);
         UpdateSpawnedPizzaItems();
         
@@ -66,6 +72,14 @@ public class PizzaUIManager : MonoBehaviour
 
             return item;
         }
+    }
+
+    public void BeginDrag(BakedPizzaGameView view)
+    {
+        DraggingPizza = view.Pizza;
+        var drag = Instantiate(dragPrefab, pizzaPanel);
+        drag.DisplayDrag(DraggingPizza);
+        DragSystem.Instance.StartDrag(drag);
     }
 
 

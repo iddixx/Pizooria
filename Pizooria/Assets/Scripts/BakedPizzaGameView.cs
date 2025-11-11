@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class BakedPizzaGameView : MonoBehaviour, IBeginDragHandler
+public class BakedPizzaGameView : MonoBehaviour, IDragObject, IPointerDownHandler
 {
     public PizzaView PizzaView;
     public CanvasGroup CanvasGroup;
     public Pizza Pizza { get; private set; }
     public PizzaUIManager Manager { get; private set; }
+    
+    public IDragObjectData DragData { get; private set; }
 
     public void Link(PizzaUIManager manager)
     {
@@ -32,10 +34,11 @@ public class BakedPizzaGameView : MonoBehaviour, IBeginDragHandler
         Pizza = pizza;
         PizzaView.Display(pizza.ScriptableObject);
         CanvasGroup.blocksRaycasts = false;
+        DragData = pizza;
     }
 
-    public void OnBeginDrag(PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
-        
+        Manager.BeginDrag(this);
     }
 }
