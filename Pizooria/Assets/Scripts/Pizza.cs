@@ -4,20 +4,20 @@ using UnityEngine.Events;
 
 public class Pizza : Ingredient
 {
+    public new PizzaObject ScriptableObject => (PizzaObject)base.ScriptableObject;
     public float bakingEndTime = -1f;
     
     public bool IsBaked
     {
         get
         {
-            PizzaObject pizza_so = ScriptableObject as PizzaObject;
+            PizzaObject pizza_so = ScriptableObject;
             if(Time.time >= bakingEndTime) return true;
             return false;
         }
     }
 
-
-    public Pizza(IngredientObject ScriptableObject) : base(ScriptableObject)
+    public Pizza(PizzaObject ScriptableObject) : base(ScriptableObject)
     {
         if(ScriptableObject is not PizzaObject pizza_so)
         {
