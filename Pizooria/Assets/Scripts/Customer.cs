@@ -13,6 +13,7 @@ public class Customer : MonoBehaviour
     public TextMeshProUGUI NameText;
     public TextMeshProUGUI DialogText;
     public Image CustomerImage;
+    public PizzaView PizzaView;
 
     public void Display(DialogData data)
     {
@@ -21,6 +22,8 @@ public class Customer : MonoBehaviour
         NameText.text = data.characterName;
         DialogText.text = data.dialogText;
         CustomerImage.sprite = data.characterSprite;
+        
+        PizzaView.Display(data.Pizza);
     }
 
     public void ReceivePizza(Pizza pizza)
