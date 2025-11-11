@@ -1,33 +1,51 @@
+using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Customer : MonoBehaviour
 {
-    public Pizza currentPizza;
     public DialogData data;
+    
+    public event Action OnSatisfied;
+    public event Action OnFailed;
+
+    public TextMeshProUGUI NameText;
+    public TextMeshProUGUI DialogText;
+    public Image CustomerImage;
+
+    public void Display(DialogData data)
+    {
+        this.data = data;
+
+        NameText.text = data.characterName;
+        DialogText.text = data.dialogText;
+        CustomerImage.sprite = data.characterSprite;
+    }
 
     public void ReceivePizza(Pizza pizza)
     {
-        currentPizza = pizza;
-
-        Debug.Log("Customer received pizza: " + pizza.ScriptableObject.name);
-
-        if (data != null && data.Pizza != null)
+        if (pizza.ScriptableObject == data.Pizza)
         {
-            if (pizza.ScriptableObject == data.Pizza)
-            {
-                FinanceSystem.coins += data.successValue;
-                Debug.Log("Correct pizza! Added " + data.successValue + " coins.");
-            }
-            else
-            {
-                FinanceSystem.coins -= data.failValue;
-                Debug.Log("Wrong pizza! Subtracted " + data.failValue + " coins.");
-            }
-            FindObjectOfType<FinanceSystem>().ChangeText();
+            ReceivedRightPizza();
         }
         else
         {
-            Debug.Log("No desired pizza set for customer.");
+            ReceivedWrongPizza();
         }
+    }
+
+    [ContextMenu("Receive right pizza")]
+    public void ReceivedRightPizza()
+    {
+        OnSatisfied?.Invoke();
+        Debug.Log("Correct pizza! Added " + data.successValue + " coins.");
+    }
+    
+    [ContextMenu("Receive wrong pizza")]
+    public void ReceivedWrongPizza()
+    {
+        OnFailed?.Invoke();
+        Debug.Log("Wrong pizza! Subtracted " + data.failValue + " coins."); 
     }
 }

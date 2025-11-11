@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public class DialogChance
@@ -14,29 +16,13 @@ public class DialogChance
 public class DialogManager : MonoBehaviour
 {
     public List<DialogChance> dialogs = new List<DialogChance>();
-    public int numberOfPeople = 5;
-    public TMP_Text nameText;
-    public TMP_Text dialogText;
-    public GameObject dialogBar;
-    public FinanceSystem financeSystem;
+    public Customer customer;
 
     public DialogData currentDialog;
     private DialogData lastDialog;
 
-    void Start()
+    public void ShowNextDialog()
     {
-        ShowNextDialog();
-    }
-
-    void ShowNextDialog()
-    {
-        numberOfPeople--;
-        if (numberOfPeople <= 0)
-        {
-            EndDay();
-            return;
-        }
-
         List<DialogChance> pool = new List<DialogChance>(dialogs);
         if (dialogs.Count > 2 && lastDialog != null)
         {
@@ -60,44 +46,14 @@ public class DialogManager : MonoBehaviour
             }
         }
 
-        lastDialog = currentDialog;
-
-        nameText.text = currentDialog.characterName;
-        dialogText.text = currentDialog.dialogText;
+        ShowDialog(currentDialog);
     }
 
-    public void OnSkip()
+    public void ShowDialog(DialogData dialog)
     {
-        StartCoroutine(SkipRoutine());
-    }
+        lastDialog = dialog;
+        currentDialog = dialog;
 
-    IEnumerator SkipRoutine()
-    {
-        FinanceSystem.coins -= currentDialog.failValue;
-        yield return new WaitForSeconds(1f);
-        dialogBar.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        dialogBar.SetActive(true);
-        ShowNextDialog();
-    }
-
-    public void OnGiveUp()
-    {
-        StartCoroutine(GiveUpRoutine());
-    }
-
-    IEnumerator GiveUpRoutine()
-    {
-        FinanceSystem.coins += currentDialog.successValue;
-        yield return new WaitForSeconds(1f);
-        dialogBar.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        dialogBar.SetActive(true);
-        ShowNextDialog();
-    }
-
-    void EndDay()
-    {
-        Debug.Log("End of Day: всі діалоги пройдені.");
+        customer.Display(dialog);
     }
 }

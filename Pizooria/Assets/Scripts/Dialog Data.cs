@@ -7,6 +7,7 @@ using UnityEngine;
 public class DialogData : ScriptableObject
 {
     public string characterName;
+    public Sprite characterSprite;
 
     [TextArea(3, 10)]
     public string dialogText;
