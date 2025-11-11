@@ -44,7 +44,6 @@ public class PizzaBaker : MonoBehaviour
         for (int i = 0; i < _baking_pizzas.Count; i++)
         {
             Pizza pizza = _baking_pizzas[i];
-            Debug.Log(pizza.IsBaked);
             if (pizza.IsBaked)
             {
                 BakedPizzasContainer.Instance.PushPizza(pizza);
