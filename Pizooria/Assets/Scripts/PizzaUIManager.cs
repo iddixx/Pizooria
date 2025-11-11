@@ -6,23 +6,19 @@ using System.Collections.Generic;
 
 public class PizzaUIManager : MonoBehaviour
 {
+    public Pizza DraggingPizza;
+    public BakedPizzaGameView viewPrefab;
+    public BakedPizzaGameView dragPrefab;
     public Transform pizzaPanel;
-    public GameObject pizzaItemPrefab;
-    public GameObject dropZone;
-    public PizzaObject testPizzaObject;
 
-    public List<GameObject> spawnedPizzaItems = new List<GameObject>();
+    public List<BakedPizzaGameView> spawnedPizzaItems = new List<BakedPizzaGameView>();
 
     void Start()
     {
-        BakeRandomPizzaForTesting();
-        Debug.Log(BakedPizzasContainer.Instance);
-        Debug.Log(BakedPizzasContainer.Instance.OnPizzaPushed);
         BakedPizzasContainer.Instance.OnPizzaPushed.AddListener(UpdateSpawnedPizzaItems);
-        
-
-
         UpdateSpawnedPizzaItems();
+        
+        BakeRandomPizzaForTesting();
     }
 
     private void BakeRandomPizzaForTesting()
@@ -30,60 +26,51 @@ public class PizzaUIManager : MonoBehaviour
 
         Pizza randomPizza = PizzaManager.Instance.GetRandomPizza();
         PizzaBaker.Instance.StartBaking(randomPizza);
-
-
         
+        randomPizza = PizzaManager.Instance.GetRandomPizza();
+        randomPizza.bakingEndTime += 3;
+        PizzaBaker.Instance.StartBaking(randomPizza);
+
     }
 
     private void UpdateSpawnedPizzaItems()
     {
-        if (pizzaItemPrefab == null || pizzaPanel == null) return;
-
         var pizzas = BakedPizzasContainer.Instance.Pizzas;
-        Debug.Log(pizzas.Count);
+        int i = 0;
         foreach (var pizza in pizzas)
         {
+            var item = GetItem(i);
+            item.Display(pizza);
+            i++;
+        }
 
-            if (spawnedPizzaItems.Exists(i =>
-                i.GetComponent<DraggablePizza>()?.pizza == pizza))
-            {
-                continue;
-            }
+        for (; i < spawnedPizzaItems.Count; i++)
+        {
+            spawnedPizzaItems[i].gameObject.SetActive(false);
+        }
+    }
 
-            GameObject item = Instantiate(pizzaItemPrefab, pizzaPanel);
-            Image img = item.GetComponent<Image>();
-
-            if (pizza.ScriptableObject is PizzaObject pizzaObj)
-            {
-                img.sprite = pizzaObj.BakedSprite;
-            }
-
-            var drag = item.GetComponent<DraggablePizza>();
-            if (drag == null)
-            {
-                drag = item.AddComponent<DraggablePizza>();
-            }
-
-            drag.originalParent = pizzaPanel;
-            drag.dropZone = dropZone;
-            drag.pizza = pizza;
-            drag.pizzaObject = item;
-
+    private BakedPizzaGameView GetItem(int i)
+    {
+        if (spawnedPizzaItems.Count >= i)
+        {
+            var item = Instantiate(viewPrefab, pizzaPanel);
+            item.Link(this);
             spawnedPizzaItems.Add(item);
+            return item;
+        }
+        else
+        {
+            var item = spawnedPizzaItems[i];
+            item.gameObject.SetActive(true);
+
+            return item;
         }
     }
 
 
-
-    public void RemovePizza(GameObject pizzaItem)
+    public void RemovePizza(Pizza pizza)
     {
-        var drag = pizzaItem.GetComponent<DraggablePizza>();
-        if (drag != null)
-        {
-            BakedPizzasContainer.Instance.Pizzas.Remove(drag.pizza);
-        }
-
-        spawnedPizzaItems.Remove(pizzaItem);
-        Destroy(pizzaItem);
+        BakedPizzasContainer.Instance.Pizzas.Remove(pizza);
     }
 }
