@@ -3,12 +3,12 @@ using UnityEngine.UI;
 
 public class PizzaView : MonoBehaviour
 { 
-    public Pizza Pizza { get; private set; }
+    public PizzaObject Pizza { get; private set; }
     public Image Image;
 
-    public void Display(Pizza pizza)
+    public void Display(PizzaObject pizza)
     {
         Pizza = pizza;
-        Image.sprite = pizza.ScriptableObject.SelfSprite;
+        Image.sprite = pizza.SelfSprite;
     }
 }

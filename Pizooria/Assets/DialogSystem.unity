@@ -205,9 +205,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 945654322}
-        m_TargetAssemblyTypeName: DialogManager, Assembly-CSharp
-        m_MethodName: OnGiveUp
+      - m_Target: {fileID: 2101904083}
+        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
+        m_MethodName: ReceivedRightPizza
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -483,6 +483,7 @@ GameObject:
   - component: {fileID: 945654322}
   - component: {fileID: 945654327}
   - component: {fileID: 945654328}
+  - component: {fileID: 945654329}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -605,10 +606,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b4b580779b5df4c95e469fe1c3b9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  viewPrefab: {fileID: 1492354729270252692, guid: 46cf11f0d7c8c4c61be5be27d5af89c0, type: 3}
+  dragPrefab: {fileID: 0}
   pizzaPanel: {fileID: 1005587941}
-  pizzaItemPrefab: {fileID: 6876704294334833254, guid: 640aecd6c3f48a14183351b522a86c5c, type: 3}
-  dropZone: {fileID: 2101904079}
-  testPizzaObject: {fileID: 0}
   spawnedPizzaItems: []
 --- !u!114 &945654328
 MonoBehaviour:
@@ -622,6 +622,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0681204c8697b446be4a814ae74e02e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &945654329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945654321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e458225ab89441fba730306bed5be03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PeopleLeft: 0
+  PeoplePerDay: 5
+  DialogManager: {fileID: 945654322}
+  Customer: {fileID: 2101904083}
 --- !u!1 &1005587940
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,9 +1148,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 945654322}
-        m_TargetAssemblyTypeName: DialogManager, Assembly-CSharp
-        m_MethodName: OnSkip
+      - m_Target: {fileID: 2101904083}
+        m_TargetAssemblyTypeName: Customer, Assembly-CSharp
+        m_MethodName: ReceivedWrongPizza
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

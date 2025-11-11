@@ -5,6 +5,7 @@ public class BakedPizzaGameView : MonoBehaviour, IBeginDragHandler
 {
     public PizzaView PizzaView;
     public CanvasGroup CanvasGroup;
+    public Pizza Pizza { get; private set; }
     public PizzaUIManager Manager { get; private set; }
 
     public void Link(PizzaUIManager manager)
@@ -14,7 +15,8 @@ public class BakedPizzaGameView : MonoBehaviour, IBeginDragHandler
 
     public void Display(Pizza pizza)
     {
-        PizzaView.Display(pizza);
+        Pizza = pizza;
+        PizzaView.Display(pizza.ScriptableObject);
         if (pizza == Manager.DraggingPizza)
         {
             CanvasGroup.alpha = 0.6f;
@@ -27,7 +29,8 @@ public class BakedPizzaGameView : MonoBehaviour, IBeginDragHandler
 
     public void DisplayDrag(Pizza pizza)
     {
-        PizzaView.Display(pizza);
+        Pizza = pizza;
+        PizzaView.Display(pizza.ScriptableObject);
         CanvasGroup.blocksRaycasts = false;
     }
 
