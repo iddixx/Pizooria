@@ -41,7 +41,7 @@ public class ShopButton : MonoBehaviour
     {
         if (CouldBuy())
         {
-            FinanceSystem.coins -= Ingredient.Cost;
+            FinanceSystem.UseCoins(Ingredient.Cost);
             if (Ingredient == null)
             {
                 Debug.LogError("Ingredient ist null im ShopButton!");

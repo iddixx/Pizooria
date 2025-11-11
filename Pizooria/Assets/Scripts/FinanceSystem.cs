@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -5,14 +6,35 @@ using UnityEngine;
 
 public class FinanceSystem : MonoBehaviour
 {
-    public ButtonSystem Target;
+    public static int coins { get; private set; } = 100;
+    public static event Action OnCoinsChanged;
+    
     public TextMeshProUGUI text;
-    static public int coins = 100;
+    
+    
     private void Start()
     {
-        Target.OnItemBought += ChangeText;
         ChangeText();
+        OnCoinsChanged += ChangeText;
     }
+    
+    private void OnDestroy()
+    {
+        OnCoinsChanged -= ChangeText;
+    }
+
+    public static void UseCoins(int amount)
+    {
+        coins -= amount;
+        OnCoinsChanged?.Invoke();
+    }
+   
+    public static void AddCoins(int amount)
+    {
+        coins += amount;
+        OnCoinsChanged?.Invoke();
+    }
+    
     public void ChangeText()
     {
         text.text = $"Coins:{coins}";
