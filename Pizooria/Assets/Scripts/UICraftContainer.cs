@@ -31,11 +31,7 @@ public class UICraftContainer : MonoBehaviour
         while(_contents.Count != 0)
         {
             GameObject it = _contents[0].gameObject;
-            Destroy(_contents[0]);
-            foreach(Transform child in it.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            Destroy(it);
             _contents.RemoveAt(0);
         }
     }

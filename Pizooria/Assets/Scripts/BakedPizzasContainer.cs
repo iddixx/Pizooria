@@ -46,4 +46,10 @@ public class BakedPizzasContainer : MonoBehaviour
         Pizzas.Add(pizza);
         OnPizzaPushed?.Invoke();
     }
+    
+    public void RemovePizza(Pizza pizza)
+    {
+        Pizzas.Remove(pizza);
+        OnPizzaPushed?.Invoke();
+    }
 }

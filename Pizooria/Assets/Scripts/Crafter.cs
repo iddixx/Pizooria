@@ -61,13 +61,17 @@ static public class Crafter
     // USE TryFridgeCraft INSTEAD, UNLESS YOU REALLY KNOW WHAT ARE YOU DOING 
     static public void UnsafeFridgeCraft(IngredientObject obj)
     {
-        foreach(CraftUnit inv_unit in FridgeManager.Instance.BuyedIngredients)
+        int prev_len = FridgeManager.Instance.BuyedIngredients.Count;
+        for(int i = 0; i < prev_len; ++i)
         {
+            CraftUnit inv_unit = FridgeManager.Instance.BuyedIngredients[i];
             foreach(CraftUnit craft_unit in obj.Craft)
             {
                 if(inv_unit.Ingredient == craft_unit.Ingredient)
                 {
                     FridgeManager.Instance.DecreaseCountFromManager(inv_unit.Ingredient, craft_unit.Count);
+                    int curr_len = FridgeManager.Instance.BuyedIngredients.Count;
+                    if (prev_len > curr_len) --i;
                 }
             }
         }
