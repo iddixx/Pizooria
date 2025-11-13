@@ -15,14 +15,14 @@ public class FridgeDrag : MonoBehaviour
     public TextMeshProUGUI nameText, countText;
 
     private FridgeSlot originSlot;
-    private uint count;
+    private int count;
     private IngredientObject objectDragged;
 
     public bool IsLeftClick;
 
     private void Awake() => Instance = this;
 
-    public void StartDrag(FridgeSlot slot, uint count, IngredientObject obj)
+    public void StartDrag(FridgeSlot slot, int count, IngredientObject obj)
     {
         originSlot = slot;
         this.count = count;
@@ -59,10 +59,10 @@ public class FridgeDrag : MonoBehaviour
         FridgeSlot targetSlot = FridgeManager.Instance.GetSlotUnderMouse();
         if (targetSlot != null)
         {
-            uint toMove = linksklick ? count : 1;
+            int toMove = linksklick ? count : 1;
 
             
-            uint leftover = targetSlot.AddItems(objectDragged, toMove);
+            int leftover = targetSlot.AddItems(objectDragged, toMove);
 
             
             if (leftover > 0)
@@ -76,7 +76,7 @@ public class FridgeDrag : MonoBehaviour
         }
         else
         {
-            uint toReturn = linksklick ? count : 1;
+            int toReturn = linksklick ? count : 1;
             originSlot.AddItems(objectDragged, toReturn);
             originSlot.UpdateUI();
         }

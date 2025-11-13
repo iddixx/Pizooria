@@ -26,7 +26,7 @@ static public class Crafter
         IngredientObject? craft_result = IngredientCatalogue.instance.Find(obj => CraftEquals(craft, obj.Craft));
         if(craft_result != null)
         {
-            return new CraftUnit(craft_result, (uint)craft_result.AmmountPerCost);
+            return new CraftUnit(craft_result, craft_result.AmmountPerCost);
         }
         return null;
     }
@@ -43,8 +43,9 @@ static public class Crafter
             foreach(CraftUnit craft_unit in obj.Craft)
             {
                 if(inv_unit.Ingredient == craft_unit.Ingredient)
-            //      and
-                if(inv_unit.Count < craft_unit.Count) return false;
+                {
+                    if(inv_unit.Count < craft_unit.Count) return false;
+                }
             }
         }
         return true;
@@ -71,7 +72,11 @@ static public class Crafter
                 {
                     FridgeManager.Instance.DecreaseCountFromManager(inv_unit.Ingredient, craft_unit.Count);
                     int curr_len = FridgeManager.Instance.BuyedIngredients.Count;
-                    if (prev_len > curr_len) --i;
+                    if (prev_len > curr_len) 
+                    {
+                        --i;
+                        prev_len = curr_len;
+                    }
                 }
             }
         }

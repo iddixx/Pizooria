@@ -41,7 +41,7 @@ public class FridgeSlot : MonoBehaviour
         UpdateUI();
     }
 
-    public uint AddItems(IngredientObject obj, uint count)
+    public int AddItems(IngredientObject obj, int count)
     {
         if (ingredient == null)
             ingredient = new Ingredient(obj);
@@ -49,8 +49,8 @@ public class FridgeSlot : MonoBehaviour
         if (ingredient.ScriptableObject != obj)
             return count; 
 
-        uint space = obj.MaxStack - ingredient.StackCount;
-        uint toAdd = (count < space) ? count : space;
+        int space = obj.MaxStack - ingredient.StackCount;
+        int toAdd = (count < space) ? count : space;
         ingredient.StackCount += toAdd;
 
         UpdateUI();

@@ -8,12 +8,12 @@ using UnityEngine.UI;
 public class Ingredient
 {
     public readonly IngredientObject ScriptableObject;
-    public readonly uint MaxStack;
-    // public uint Identifier;
+    public readonly int MaxStack;
+    // public int Identifier;
     public UnityEvent<Ingredient> OnStackChange = new();
 
-    protected uint _stack_count = 0;
-    public virtual uint StackCount
+    protected int _stack_count = 0;
+    public virtual int StackCount
     { 
         set
         {

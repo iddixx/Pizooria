@@ -22,7 +22,11 @@ public class UICraftView : MonoBehaviour
     }
 
     // DO NOT CALL THIS METHOD
-    public void CraftAction() => Crafter.UnsafeFridgeCraft(From);
+    public void CraftAction()
+    {
+        Debug.Log($"CanCraft: {Crafter.CanCraft(From)}", this);
+        if(!Crafter.TryFridgeCraft(From)) Destroy(this.gameObject);
+    }
 
     private void OnEnable()
     {
@@ -59,7 +63,7 @@ public class UICraftView : MonoBehaviour
         _self_button.targetGraphic = separator;
         _items.Add(separator.gameObject);
 
-        CraftUnit craft_result = new CraftUnit(craft, (uint)craft.AmmountPerCost);
+        CraftUnit craft_result = new CraftUnit(craft, craft.AmmountPerCost);
 
         UICraftUnitView result_view = Instantiate(UnitPrefab, this.transform);
         result_view.SetUnit(craft_result);

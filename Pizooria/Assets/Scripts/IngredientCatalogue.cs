@@ -22,12 +22,12 @@ public class IngredientCatalogue : ScriptableObject
         }
     }
 
-    public IngredientObject GetByID(uint id)
+    public IngredientObject GetByID(int id)
     {
         if(id >= Ingredients.Length)
             throw new System.ArgumentException($"Ingredient with id {id} does not exist");
 
-        return Ingredients[(int)id];
+        return Ingredients[id];
     }
 
     // returns -1 if there is no such object in catalogue
