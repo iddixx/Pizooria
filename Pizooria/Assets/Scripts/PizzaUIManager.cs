@@ -58,7 +58,7 @@ public class PizzaUIManager : MonoBehaviour
 
     private BakedPizzaGameView GetItem(int i)
     {
-        if (spawnedPizzaItems.Count >= i)
+        if (spawnedPizzaItems.Count <= i)
         {
             var item = Instantiate(viewPrefab, pizzaPanel);
             item.Link(this);
@@ -80,11 +80,6 @@ public class PizzaUIManager : MonoBehaviour
         var drag = Instantiate(dragPrefab, pizzaPanel);
         drag.DisplayDrag(DraggingPizza);
         DragSystem.Instance.StartDrag(drag);
-    }
-
-
-    public void RemovePizza(Pizza pizza)
-    {
-        BakedPizzasContainer.Instance.Pizzas.Remove(pizza);
+        UpdateSpawnedPizzaItems();
     }
 }

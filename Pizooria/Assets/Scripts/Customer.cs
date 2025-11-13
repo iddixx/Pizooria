@@ -36,6 +36,7 @@ public class Customer : MonoBehaviour
         {
             ReceivedWrongPizza();
         }
+        BakedPizzasContainer.Instance.RemovePizza(pizza);
     }
 
     [ContextMenu("Receive right pizza")]
