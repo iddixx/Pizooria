@@ -118,6 +118,7 @@ public class FridgeManager : MonoBehaviour
                 BuyedIngredients.RemoveAt(i);
                 BuyedIngredients.Add(found_unit);
                 BoughtIngredient?.Invoke();
+                break;
             }
         }
 
@@ -153,6 +154,7 @@ public class FridgeManager : MonoBehaviour
                     BuyedIngredients.Add(found_unit);
                 }
                 DecreasedIngredient?.Invoke();
+                break;
             }
         }
 
