@@ -27,6 +27,6 @@ public class UICraftUnitView : MonoBehaviour
         Text.text = $"{From.Count}";
     }
 
-    public void ChangeCountText(uint count) => Text.text = $"{count}";
+    public void ChangeCountText(int count) => Text.text = $"{count}";
 
 }

@@ -57,14 +57,14 @@ public class FridgeManager : MonoBehaviour
 
         return null;
     }
-    public void AddItem(IngredientObject itemObject,uint amount)
+    public void AddItem(IngredientObject itemObject,int amount)
     {
         for (int i = 0; i < slots.Count; i++) 
         {
             AddItemToSlot(i,itemObject,amount);
         }
     }
-    public bool AddItemToSlot(int slotIndex, IngredientObject itemObject, uint amount)
+    public bool AddItemToSlot(int slotIndex, IngredientObject itemObject, int amount)
     {
         bool couldAdd = false;
         if (slotIndex < 0 || slotIndex >= slots.Count)
@@ -114,21 +114,22 @@ public class FridgeManager : MonoBehaviour
             {
                 found = true;
                 CraftUnit found_unit = BuyedIngredients[i];
-                found_unit.Count += (uint)item.AmmountPerCost;
+                found_unit.Count += item.AmmountPerCost;
                 BuyedIngredients.RemoveAt(i);
                 BuyedIngredients.Add(found_unit);
                 BoughtIngredient?.Invoke();
+                break;
             }
         }
 
         if(!found)
         {
-            BuyedIngredients.Add(new CraftUnit(item, (uint)item.AmmountPerCost));
+            BuyedIngredients.Add(new CraftUnit(item, item.AmmountPerCost));
             BoughtIngredient?.Invoke();
         }
     }
 
-    public void DecreaseCountFromManager(IngredientObject item, uint amount)
+    public void DecreaseCountFromManager(IngredientObject item, int amount)
     {
         bool found = false;
         for(int i = 0; i < BuyedIngredients.Count; ++i)
@@ -137,7 +138,7 @@ public class FridgeManager : MonoBehaviour
             {
                 found = true;
                 CraftUnit found_unit = BuyedIngredients[i];
-                uint rest = (found_unit.Count - amount);
+                int rest = found_unit.Count - amount;
                 if(rest < 0)
                 {
                     throw new System.ArgumentException("You cannot decrease more than fridge has!");
@@ -153,6 +154,7 @@ public class FridgeManager : MonoBehaviour
                     BuyedIngredients.Add(found_unit);
                 }
                 DecreasedIngredient?.Invoke();
+                break;
             }
         }
 

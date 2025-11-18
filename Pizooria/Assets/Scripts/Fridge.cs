@@ -29,9 +29,9 @@ public class Fridge : MonoBehaviour
         }
     }
 
-    public void AddItemToFridge(IngredientObject obj, uint amount = 1)
+    public void AddItemToFridge(IngredientObject obj, int amount = 1)
     {
-        uint remaining = amount;
+        int remaining = amount;
         
         foreach (var slot in slots)
         {

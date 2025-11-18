@@ -26,7 +26,7 @@ static public class Crafter
         IngredientObject? craft_result = IngredientCatalogue.instance.Find(obj => CraftEquals(craft, obj.Craft));
         if(craft_result != null)
         {
-            return new CraftUnit(craft_result, (uint)craft_result.AmmountPerCost);
+            return new CraftUnit(craft_result, craft_result.AmmountPerCost);
         }
         return null;
     }
@@ -38,15 +38,20 @@ static public class Crafter
         if(FridgeManager.Instance.BuyedIngredients == null) return false;
         if(FridgeManager.Instance.BuyedIngredients.Count == 0) return false;
 
-        foreach(CraftUnit inv_unit in FridgeManager.Instance.BuyedIngredients)
+        foreach(CraftUnit craft_unit in obj.Craft)
         {
-            foreach(CraftUnit craft_unit in obj.Craft)
+            bool found_any = false;
+            foreach(CraftUnit inv_unit in FridgeManager.Instance.BuyedIngredients)
             {
                 if(inv_unit.Ingredient == craft_unit.Ingredient)
-            //      and
-                if(inv_unit.Count < craft_unit.Count) return false;
+                {
+                    if(inv_unit.Count < craft_unit.Count) return false;
+                    found_any = true;
+                }
             }
+            if(!found_any) return false;
         }
+
         return true;
     }
     
@@ -61,20 +66,13 @@ static public class Crafter
     // USE TryFridgeCraft INSTEAD, UNLESS YOU REALLY KNOW WHAT ARE YOU DOING 
     static public void UnsafeFridgeCraft(IngredientObject obj)
     {
-        int prev_len = FridgeManager.Instance.BuyedIngredients.Count;
-        for(int i = 0; i < prev_len; ++i)
-        {
-            CraftUnit inv_unit = FridgeManager.Instance.BuyedIngredients[i];
-            foreach(CraftUnit craft_unit in obj.Craft)
-            {
-                if(inv_unit.Ingredient == craft_unit.Ingredient)
-                {
-                    FridgeManager.Instance.DecreaseCountFromManager(inv_unit.Ingredient, craft_unit.Count);
-                    int curr_len = FridgeManager.Instance.BuyedIngredients.Count;
-                    if (prev_len > curr_len) --i;
-                }
-            }
-        }
-        FridgeManager.Instance.AddItemToManager(obj);
+       foreach(CraftUnit craft_unit in obj.Craft)
+       {
+           Debug.Log($"Decreasing {craft_unit.Ingredient.name}");
+           Debug.Log($"{craft_unit.Ingredient.name} count is {craft_unit.Count}");
+           FridgeManager.Instance.DecreaseCountFromManager(craft_unit.Ingredient, craft_unit.Count);
+
+       }
+       FridgeManager.Instance.AddItemToManager(obj);
     }
 }
