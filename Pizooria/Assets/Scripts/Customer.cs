@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Customer : MonoBehaviour
 {
     public DialogData data;
-    
+
     public event Action OnSatisfied;
     public event Action OnFailed;
 
@@ -15,6 +15,15 @@ public class Customer : MonoBehaviour
     public Image CustomerImage;
     public PizzaView PizzaView;
 
+    public Animator animationS;
+    public Animator animationD;
+    public AnimationClip Stars;
+    public AnimationClip Dislike;
+
+    private void Awake()
+    {
+    }
+
     public void Display(DialogData data)
     {
         this.data = data;
@@ -22,7 +31,7 @@ public class Customer : MonoBehaviour
         NameText.text = data.characterName;
         DialogText.text = data.dialogText;
         CustomerImage.sprite = data.characterSprite;
-        
+
         PizzaView.Display(data.Pizza);
     }
 
@@ -42,14 +51,16 @@ public class Customer : MonoBehaviour
     [ContextMenu("Receive right pizza")]
     public void ReceivedRightPizza()
     {
+        animationS.SetTrigger("Like");
         OnSatisfied?.Invoke();
         Debug.Log("Correct pizza! Added " + data.successValue + " coins.");
     }
-    
+
     [ContextMenu("Receive wrong pizza")]
     public void ReceivedWrongPizza()
     {
+        animationD.SetTrigger("Dislike");
         OnFailed?.Invoke();
-        Debug.Log("Wrong pizza! Subtracted " + data.failValue + " coins."); 
+        Debug.Log("Wrong pizza! Subtracted " + data.failValue + " coins.");
     }
 }
