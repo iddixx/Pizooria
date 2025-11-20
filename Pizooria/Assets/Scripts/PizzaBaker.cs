@@ -21,6 +21,25 @@ public class PizzaBaker : MonoBehaviour
         }
     }
 
+    public void BakeFirstPizzasInFridge()
+    {
+        foreach(FridgeSlot slot in FridgeManager)
+        {
+            if(slot.ingredient is Pizza pizza)
+            {
+                if(pizza.IsBaked) continue;
+                else
+                {
+                    if(_baking_pizzas.Count == SimultaneouslyBakingLimit)
+                    {
+                        Debug.LogWarning("Simultaneously baking limit reached, not baking", this);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
     public bool CanStartBaking()
     {
         if((_baking_pizzas.Count + 1) > SimultaneouslyBakingLimit)
