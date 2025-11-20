@@ -17,16 +17,23 @@ public class Fridge : MonoBehaviour
         if (manager == null)
             manager = FindObjectOfType<FridgeManager>();
         
+        manager.BoughtIngredient.AddListener(UpdateContent);
+        manager.DecreasedIngredient.AddListener(UpdateContent);
+        UpdateContent();
+    }
+
+    public void UpdateContent()
+    {
         foreach (var slot in slots)
         {
+            slot.ingredient = null;
             slot.UpdateUI();
         }
-
         
         foreach (var item in manager.BuyedIngredients)
         {
             AddItemToFridge(item.Ingredient, item.Count);
-        }
+        } 
     }
 
     public void AddItemToFridge(IngredientObject obj, int amount = 1)
@@ -54,7 +61,12 @@ public class Fridge : MonoBehaviour
 
         if (remaining > 0)
         {
-            Debug.LogWarning($"Nicht genug Platz für {remaining} Stück von {obj.name}");
+            Debug.LogWarning($"Nicht genug Platz fï¿½r {remaining} Stï¿½ck von {obj.name}");
         }
+    }
+
+    public void BakePizzas()
+    {
+        PizzaBaker.Instance.BakeFirstPizzasInFridge();
     }
 }

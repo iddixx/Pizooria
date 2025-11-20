@@ -12,12 +12,19 @@ public class GameOverManager : MonoBehaviour
     public GameObject textPrefab;
     public Transform contentParent;
     public TextMeshProUGUI GameOver;
+    public Canvas Canvas;
+
+    public void Clear()
+    {
+        infos.Clear();
+    }
     public void AddInfo(IGameoverInfo asdf)
     {
         infos.Add(asdf);
     }
     public void ShowGameOverScreen()
     {
+        Canvas.enabled = true;
         StartCoroutine(ShowInfosStepByStep());
         /*foreach (var inf in texts)
         {

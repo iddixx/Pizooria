@@ -3,9 +3,8 @@ using UnityEngine;
 
 public class DayManager : MonoBehaviour
 {
-    public int PeopleLeft;
-    
-    public int PeoplePerDay;
+    public StatsManager StatsManager; 
+
     public DialogManager DialogManager;
     public Customer Customer;
 
@@ -19,36 +18,24 @@ public class DayManager : MonoBehaviour
 
     public void StartDay()
     {
-        PeopleLeft = PeoplePerDay;
         ShowNextCustomer();
     }
 
     private void CustomerOnOnFailed()
     {
         FinanceSystem.UseCoins(DialogManager.currentDialog.failValue);
-        ShowNextCustomer();
+        StatsManager.EndGame();
     }
 
     private void CustomerOnOnSatisfied()
     {
         FinanceSystem.AddCoins(DialogManager.currentDialog.successValue);
+        StatsManager.GivePizza();
         ShowNextCustomer();
     }
 
     public void ShowNextCustomer()
     {
-        if (PeopleLeft <= 0)
-        {
-            EndDay();
-            return;
-        }
-
         DialogManager.ShowNextDialog();
-        PeopleLeft--;
-    }
-
-    public void EndDay()
-    {
-        Debug.Log("End day");
     }
 }

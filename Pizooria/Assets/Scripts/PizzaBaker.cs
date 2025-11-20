@@ -23,7 +23,7 @@ public class PizzaBaker : MonoBehaviour
 
     public void BakeFirstPizzasInFridge()
     {
-        foreach(FridgeSlot slot in FridgeManager)
+        foreach(FridgeSlot slot in FridgeManager.Instance.slots)
         {
             if(slot.ingredient is Pizza pizza)
             {

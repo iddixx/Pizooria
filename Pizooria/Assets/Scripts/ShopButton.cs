@@ -10,20 +10,16 @@ public class ShopButton : MonoBehaviour
     
     public IngredientObject Ingredient;
     public Color CanColor = Color.green, CannotColor = Color.red;
-    public FinanceSystem Coins;
     public Image buttonImage,ingredient;
     public TextMeshProUGUI costText,ammounttext;
-    private void Start()
+    public void Init()
     {
-        
-        
         Target.OnItemBought += SetColor;
 
         ammounttext.text = $"{Ingredient.AmmountPerCost}X";
         costText.text = $"{Ingredient.Cost}$";
 
         ingredient.sprite = Ingredient.SelfSprite;
-        
 
         SetColor();
     }
