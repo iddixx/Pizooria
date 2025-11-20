@@ -15,4 +15,5 @@ MonoBehaviour:
   MaxStack: 999
   Cost: 15
   AmmountPerCost: 5
-  SelfSprite: {fileID: 21300000, guid: 0e067b5412bdb4e488155bf9c64eefb6, type: 3}
+  SelfSprite: {fileID: 21300000, guid: a34951421bd47ae40a4cfd59153209e2, type: 3}
+  Craft: []

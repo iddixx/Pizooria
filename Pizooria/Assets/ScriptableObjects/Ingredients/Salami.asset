@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1a8a197af652d745bdfbcb2464f5e51, type: 3}
-  m_Name: Pepper
+  m_Script: {fileID: 11500000, guid: 75136db0376d0e66a9f8d953a2c16140, type: 3}
+  m_Name: Salami
   m_EditorClassIdentifier: 
   MaxStack: 999
-  Cost: 8
+  Cost: 10
   AmmountPerCost: 5
-  SelfSprite: {fileID: 21300000, guid: 4daa27e0dfef9c04285ee984e2dcc3b2, type: 3}
+  SelfSprite: {fileID: 21300000, guid: cfa83e820444cec48acd97a56fe15926, type: 3}
   Craft: []
+  BakingTime: 0
+  BakedSprite: {fileID: 0}

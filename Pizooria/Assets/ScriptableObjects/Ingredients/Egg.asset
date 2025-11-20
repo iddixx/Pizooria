@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1a8a197af652d745bdfbcb2464f5e51, type: 3}
-  m_Name: Pepper
+  m_Name: Egg
   m_EditorClassIdentifier: 
   MaxStack: 999
-  Cost: 8
+  Cost: 20
   AmmountPerCost: 5
-  SelfSprite: {fileID: 21300000, guid: 4daa27e0dfef9c04285ee984e2dcc3b2, type: 3}
+  SelfSprite: {fileID: 21300000, guid: 18be303838e27624ea361a57d6c5e633, type: 3}
   Craft: []
