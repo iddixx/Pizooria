@@ -35,6 +35,7 @@ public class PizzaBaker : MonoBehaviour
                         Debug.LogWarning("Simultaneously baking limit reached, not baking", this);
                         return;
                     }
+                    StartBaking(pizza);
                 }
             }
         }
