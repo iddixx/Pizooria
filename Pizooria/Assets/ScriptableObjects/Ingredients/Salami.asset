@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Salami
   m_EditorClassIdentifier: 
   MaxStack: 999
-  Cost: 10
-  AmmountPerCost: 5
+  Cost: 0
+  AmmountPerCost: 1
   SelfSprite: {fileID: 21300000, guid: cfa83e820444cec48acd97a56fe15926, type: 3}
-  Craft: []
+  Craft:
+  - Ingredient: {fileID: 11400000, guid: 74ec653fca54ffd49b140c53bbc0a49b, type: 2}
+    Count: 1
+  - Ingredient: {fileID: 11400000, guid: 584c3605b8ec9704d8e2914726238506, type: 2}
+    Count: 5
+  - Ingredient: {fileID: 11400000, guid: 9260a528cc89af74a95a8910bea257bd, type: 2}
+    Count: 5
   BakingTime: 0
   BakedSprite: {fileID: 0}

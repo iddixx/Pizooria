@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Onion
   m_EditorClassIdentifier: 
   MaxStack: 999
-  Cost: 0
-  AmmountPerCost: 0
+  Cost: 50
+  AmmountPerCost: 67
   SelfSprite: {fileID: 21300000, guid: 5089931daa3ce3a43be45506f0bba137, type: 3}
   Craft: []

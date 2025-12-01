@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IngredientCatalogue
   m_EditorClassIdentifier: 
   Ingredients:
-  - {fileID: 11400000, guid: efc639a9789ffe342ba8a505f9eb6c36, type: 2}
+  - {fileID: 11400000, guid: 9260a528cc89af74a95a8910bea257bd, type: 2}
   - {fileID: 11400000, guid: 7c4fbfdb4bf584b449eaced7e6f636f6, type: 2}
   - {fileID: 11400000, guid: ec95a3a114981cf45bea169d306c047c, type: 2}
   - {fileID: 11400000, guid: c1bb8bb2e93d2c643a76811446ca3ba2, type: 2}
@@ -23,4 +23,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fb1cadd22c7f92446aa009a76be2dcea, type: 2}
   - {fileID: 11400000, guid: 9260a528cc89af74a95a8910bea257bd, type: 2}
   - {fileID: 11400000, guid: 584c3605b8ec9704d8e2914726238506, type: 2}
-  - {fileID: 11400000, guid: ac8988942f32db34bb39a1af4b21292a, type: 2}
+  - {fileID: 11400000, guid: ed5a7f71015e74e4e8bc90ca78838420, type: 2}
+  - {fileID: 11400000, guid: 3d20a5d76be41f14ca3d82605f0e8b67, type: 2}
+  - {fileID: 11400000, guid: 74ec653fca54ffd49b140c53bbc0a49b, type: 2}
+  - {fileID: 11400000, guid: 01e8b051c6fec7947b19e449ef4c5bee, type: 2}
+  - {fileID: 11400000, guid: 36973c8deba147241b9b8baa77026bf5, type: 2}
+  - {fileID: 11400000, guid: 951bdc285acf42d4bb588bcf1e5a0ece, type: 2}
+  - {fileID: 11400000, guid: 425af0ac54c36304ca900d0ed66bd97b, type: 2}

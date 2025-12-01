@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxStack: 999
   Cost: 0
-  AmmountPerCost: 0
-  SelfSprite: {fileID: 0}
+  AmmountPerCost: 1
+  SelfSprite: {fileID: 21300000, guid: 659b2f32a9bfbb44d987e1a8c4d37f57, type: 3}
   Craft:
   - Ingredient: {fileID: 11400000, guid: 9260a528cc89af74a95a8910bea257bd, type: 2}
     Count: 8

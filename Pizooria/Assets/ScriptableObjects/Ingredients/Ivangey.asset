@@ -21,8 +21,6 @@ MonoBehaviour:
     Count: 5
   - Ingredient: {fileID: 11400000, guid: 584c3605b8ec9704d8e2914726238506, type: 2}
     Count: 3
-  - Ingredient: {fileID: 11400000, guid: 425af0ac54c36304ca900d0ed66bd97b, type: 2}
-    Count: 1
   - Ingredient: {fileID: 11400000, guid: 74ec653fca54ffd49b140c53bbc0a49b, type: 2}
     Count: 1
   BakingTime: 0

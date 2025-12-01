@@ -16,6 +16,7 @@ public class UICraftContainer : MonoBehaviour
 
     private void OnEnable()
     {
+        UpdateContents();
         FridgeManager.Instance.BoughtIngredient.AddListener(UpdateContents);
         FridgeManager.Instance.DecreasedIngredient.AddListener(UpdateContents);
     }

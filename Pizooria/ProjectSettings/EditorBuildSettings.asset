@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CraftingScene.unity
     guid: 25d14589ff625f83d82d0c2703aee0ee
+  - enabled: 1
+    path: Assets/Scenes/DialogSystem.unity
+    guid: cc118e84958a63749a858848f16bedea
   m_configObjects: {}
