@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FinanceSystem : MonoBehaviour
 {
-    public static int coins { get; private set; } = 100;
+    public static int coins { get; private set; } = 1000;
     public static event Action OnCoinsChanged;
     
     public TextMeshProUGUI text;
